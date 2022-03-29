@@ -7,6 +7,6 @@ Olá! Este é o repositório do Checkpoint II da disciplina de Front-End II, do 
 - [Henrique Santos](https://github.com/henriquec)
 - [Fábio Neres](https://github.com/neresfabio)
 - [Marcelo Magalhães](https://github.com/marcelomagal)
-- [Pedro Marques](http://github.com/)
+- [Pedro Marques](http://github.com/pedromarqs)
 
 ## Tema do Projeto
