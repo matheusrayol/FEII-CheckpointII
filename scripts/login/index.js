@@ -47,10 +47,10 @@ campoEmailLogin.addEventListener('blur', function() {
 
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(campoEmailLogin.value)) {
         inputEmailValidacao.innerText = "";
-        campoEmailLogin.style.border = "";
+        campoEmailLogin.style.border = "1px solid green";
         emailEValido = true;
     } else {
-        inputEmailValidacao.innerText = "Campo obrigatório";
+        inputEmailValidacao.innerText = "Formato de e-mail inválido";
         inputEmailValidacao.style.color = "red";
         inputEmailValidacao.style.fontSize = "8";
         inputEmailValidacao.style.fontWeight = "bold";
@@ -67,7 +67,7 @@ campoSenhaLogin.addEventListener('blur', function() {
 
     if (campoSenhaLogin.value != "" && campoSenhaLogin.value.length >= 8) {
         inputSenhaValidacao.innerText = "";
-        campoSenhaLogin.style.border = "";
+        campoSenhaLogin.style.border = "1px solid green";
         senhaEValida = true;
     } else {
         inputSenhaValidacao.innerText = "A senha deve ter no mínimo 8 caracteres";
@@ -82,9 +82,12 @@ campoSenhaLogin.addEventListener('blur', function() {
 })
 
 function validaTelaDeLogin() {
-    if ((emailEValido && senhaEValida) || (emailEValido && !senhaEValida) || (!emailEValido && senhaEValida)) {
+    if (emailEValido && senhaEValida) {
         botaoLogin.removeAttribute('disabled');
+        botaoLogin.innerText = "Entrar";
         return true;
+    } else if ((emailEValido && !senhaEValida) || (!emailEValido && senhaEValida)) {
+        return false;
     } else {
         botaoLogin.setAttribute('disabled', 'true');
         return false;
