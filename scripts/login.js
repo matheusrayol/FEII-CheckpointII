@@ -13,13 +13,14 @@ botaoLogin.innerText = "Bloqueado";
 
 const usuarioObjeto = {
     email: '',
-    senha: ''
+    password: ''
 }
 
 botaoLogin.addEventListener('click', function(evento) {
 
     if (validaTelaDeLogin()) {
         console.log("Informações OK");
+        evento.preventDefault();
 
         // Normalizações - Retirada de espaços em branco
         campoEmailLoginNormalizado = retiraEspacosDeUmValorInformado(campoEmailLogin.value);
@@ -32,7 +33,36 @@ botaoLogin.addEventListener('click', function(evento) {
         console.log(campoSenhaLoginNormalizado);
 
         usuarioObjeto.email = campoEmailLoginNormalizado;
-        usuarioObjeto.senha = campoSenhaLoginNormalizado;
+        usuarioObjeto.password = campoSenhaLoginNormalizado;
+
+        let loginUsuarioJson = JSON.stringify(usuarioObjeto);
+
+
+        let urlEndpointLogin = "https://ctd-todo-api.herokuapp.com/v1/users/login";
+        let configuracaoDaRequisicao = {
+            method: 'POST',
+            body: loginUsuarioJson,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        fetch(urlEndpointLogin, configuracaoDaRequisicao).then(
+            resultado => {
+                return resultado.json();
+            }
+        )
+        .then(
+            resultado => {
+                console.log(resultado);
+            }
+        )
+        .catch(
+            erro => {
+                console.log(erro);
+            }
+        );
+
 
     } else {
         evento.preventDefault();
