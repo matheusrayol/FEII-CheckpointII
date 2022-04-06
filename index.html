@@ -1,54 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do App</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To-Do App</title>
 
-  <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
-  <link rel="stylesheet" href="styles/acesso.css">
+        <!-- Folha de estilos compartilhada entre Login e Registro -->
+        <link rel="stylesheet" href="assets/styles/acesso.css">
 
-</head>
+    </head>
 
-<body>
-  <div class="left">
-    <img src="./assets/pessoa-login.png" alt="">
-  </div>
+    <body>
+        <div class="left">
+            <img src="assets/img/pessoa-login.png" alt="">
+        </div>
 
-  <div class="right">
-    <form>
-      <div class="form-header">
-        <p>To-Do App</p>
-      </div>
-      <h1>Acessar</h1>
+        <div class="right">
+            <form>
+                <div class="form-header">
+                    <p>To-Do App</p>
+                </div>
+                <h1>Acessar</h1>
+                <label>
+                    Email:
+                    <input id="inputEmail" type="text">
+                    <small id="inputEmailValidacao"></small>
+                </label>
+                <label>
+                    Senha:
+                    <input id="inputPassword" type="password">
+                    <small id="inputSenhaValidacao"></small>
+                </label>
+                <small id="validacaoLogin"></small>
 
+                <button id="buttonSubmit" type="submit">Acessar</button>
 
-      <label>
-        Email:
-        <input id="inputEmail" type="text">
-        <small id="inputEmailValidacao"></small>
-      </label>
-      <label>
-        Senha:
-        <input id="inputPassword" type="password">
-        <small id="inputSenhaValidacao"></small>
-      </label>
-        <small id="validacaoLogin"></small>
+            </form>
+            <div class="ingressar">
+                <a href="signup.html">Não possui conta? Crie agora mesmo</a>
+            </div>
+        </div>
 
-      <button id="buttonSubmit" type="submit">Acessar</button>
-
-    </form>
-    <div class="ingressar">
-      <a href="signup.html">Não possui conta? Crie agora mesmo</a>
-    </div>
-  </div>
-
-
-  <!-- ---------------------- lógica aplicada no login ----------------------- -->
-  <script src="scripts/validacoes/utils.js"></script>
-  <script src="scripts/login.js"></script>
-</body>
+        <!-- Validações de Login -->
+        <script src="assets/scripts/validacoes/utils.js"></script>
+        <script src="assets/scripts/login/login.js"></script>
+    </body>
 
 </html>
