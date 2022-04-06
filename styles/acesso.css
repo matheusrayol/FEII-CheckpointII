@@ -1,5 +1,23 @@
 @import url('./common.css');
 
+@media (max-width: 500px) {
+    body {
+      flex-direction: column;
+    }  
+
+    .left {
+      width: 100% !important;
+    }
+
+    .right {
+      width: 100% !important;
+    }
+
+    form {
+      max-width: 100%;
+    }
+}
+
 body{
   display: flex;
 }

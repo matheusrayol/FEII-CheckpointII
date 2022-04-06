@@ -48,11 +48,13 @@ form.addEventListener('submit', (e) => {
     .then(
       resultado => {
         console.log(resultado);
+        cadastroSucesso(resultado);
       }
     )
     .catch(
       erro => {
         console.log(erro);
+        cadastroErro(erro);
       }
     );
     
@@ -61,6 +63,30 @@ form.addEventListener('submit', (e) => {
 
   }
 })
+
+function cadastroSucesso(jwtRecebido) {
+  console.log("JWT Recebido");
+  console.log(jwtRecebido);
+  alert("Usuário cadastrado com sucesso")
+
+  sessionStorage.setItem("jwt", jwtRecebido);
+
+  location.href = "tarefas.html";
+}
+
+function cadastroErro(statusRecebido) {
+  let validacaoCadastro = document.getElementById("validacaoCadastro");
+  elementoSmallErro(validacaoCadastro);
+
+  console.log(statusRecebido);
+  if (statusRecebido == 400) {
+      console.log("Ocorreu um erro no cadastro");
+      validacaoLogin.innerHTML = "Ocorreu um erro no cadastro. Verifique as informações fornecidas e tente novamente."
+      cadastroApiValidacao = false;
+  } else {
+      cadastroApiValidacao = true;
+  }
+}
 
 const validateName = () => {
   const nameHasOnlyString = !/\d/g.test(inputName.value);

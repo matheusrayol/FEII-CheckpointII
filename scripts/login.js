@@ -49,17 +49,22 @@ botaoLogin.addEventListener('click', function(evento) {
 
         fetch(urlEndpointLogin, configuracaoDaRequisicao).then(
             resultado => {
-                return resultado.json();
+                if (resultado.status == 201) {
+                    return resultado.json();
+                }
+                throw resultado;
             }
         )
         .then(
             resultado => {
                 console.log(resultado);
+                loginSucesso(resultado.jwt);
             }
         )
         .catch(
             erro => {
                 console.log(erro);
+                loginErro(erro.status);
             }
         );
 
@@ -69,7 +74,29 @@ botaoLogin.addEventListener('click', function(evento) {
         alert("Preencha o e-mail e senha para fazer o login!")
     }
 
-})
+});
+
+function loginSucesso(jsonRecebido) {
+    console.log("JSON Recebido: ");
+    console.log(jsonRecebido);
+    alert("Login realizado com sucesso");
+}
+
+function loginErro(statusRecebido) {
+    let validacaoLogin = document.getElementById('validacaoLogin');
+
+    // Limpa o campo da senha ao errar o login
+    campoSenhaLogin.value = "";
+
+    console.log(statusRecebido);
+    if (statusRecebido == 400 || statusRecebido == 404) {
+        console.log("Ocorreu algum erro, verifique os dados informados e tente novamente.");
+        validacaoLogin.innerHTML = "Ocorreu algum erro, verifique os dados informados e tente novamente.";
+        loginApiValidacao = false;
+    } else {
+        loginApiValidacao = true;
+    }
+}
 
 campoEmailLogin.addEventListener('blur', function() {
 
