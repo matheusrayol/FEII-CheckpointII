@@ -1,152 +1,166 @@
-let campoEmailLogin = document.getElementById(`inputEmail`);
-let campoSenhaLogin = document.getElementById(`inputPassword`);
-let botaoLogin = document.getElementById(`buttonSubmit`);
+// Captura dos campos necessários para as validações iniciais
+const campoEmailLogin = document.getElementById('emailInput');
+const campoEmailMensagem = document.getElementById('emailInputMessage');
+const campoSenhaLogin = document.getElementById('passwordInput');
+const campoSenhaMensagem = document.getElementById('passwordInputMessage');
+const botaoLogin = document.getElementById('submitButton');
+const statusLoginMensagem = document.getElementById('loginStatusMessage');
 
+// Inicializa as variáveis que receberão os valores dos campos de e-mail e senha normalizados
 let campoEmailLoginNormalizado;
 let campoSenhaLoginNormalizado;
 
+// Pré-configura as variáveis de validação de e-mail e senha para impedir ação do botão de login
 let emailEValido = false;
 let senhaEValida = false;
 
-botaoLogin.setAttribute('disabled', 'true');
-botaoLogin.innerText = "Bloqueado";
-
+// Criação do objeto que receberá as informações de login (e-mail e senha) que o usuário preencher
 const usuarioObjeto = {
     email: '',
     password: ''
 }
 
-botaoLogin.addEventListener('click', function(evento) {
+// Event Listener - Campo de E-mail
+campoEmailLogin.addEventListener('input', () => {
 
-    if (validaTelaDeLogin()) {
-        console.log("Informações OK");
+    // Verifica se o campo de e-mail está com um e-mail em formato válido. Caso esteja, altera a borda do elemento para verde e remove qualquer mensagem de erro existente.
+    if (/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(campoEmailLogin.value)) {
+        campoEmailLogin.style.border = "1px solid green";
+        limpaMensagemDeErro(campoEmailMensagem);
+        emailEValido = true;
+    }
+    // Caso ainda não esteja com o formato válido, altera a borda do elemento para vermelho e a mensagem de erro é exibida assim que o texto começar a ser introduzido no campo.
+    else {
+        campoEmailLogin.style.border = "1px solid red";
+        constroiMensagemDeErro("Formato de E-mail inválido.", campoEmailMensagem);
+        emailEValido = false;
+    }
+});
+
+// Event Listener - Campo de Senha
+campoSenhaLogin.addEventListener('input', () => {
+
+    // Verifica se o campo de senha não está vazio, e que ele possui o mínimo de 8 caracteres. Caso possua, remove qualquer mensagem de erro e altera a borda do elemento para verde.
+    if (campoSenhaLogin.value.length >= 8 && campoSenhaLogin.value != "") {
+        campoSenhaLogin.style.border = "1px solid green";
+        limpaMensagemDeErro(campoSenhaMensagem);
+        senhaEValida = true;
+    }
+    // Caso o campo de senha ainda não tenha o mínimo de 8 caracteres, a mensagem de erro é exibida assim que o texto começar a ser introduzido no campo.
+    else {
+        campoSenhaLogin.style.border = "1px solid red";
+        constroiMensagemDeErro("A senha deve possuir no mínimo 8 caracteres.", campoSenhaMensagem);
+        senhaEValida = false;
+    }
+});
+
+// Event Listener - Botão de Login
+botaoLogin.addEventListener('click', evento => {
+
+    // Verifica se o usuário preencheu os campos de e-mail e senha. 
+    // Caso não tenha preenchido, impede o envio do formulário e exibe mensagem de erro.
+    if (validarLogin()) {
+        limpaMensagemDeErro(statusLoginMensagem);
+        console.log("Todos os campos para login foram preenchidos.");
         evento.preventDefault();
 
-        // Normalizações - Retirada de espaços em branco
+        // Normaliza os campos retirando espaços em branco
         campoEmailLoginNormalizado = retiraEspacosDeUmValorInformado(campoEmailLogin.value);
         campoSenhaLoginNormalizado = retiraEspacosDeUmValorInformado(campoSenhaLogin.value);
 
-        // Normalizações - Converte o e-mail em minúsculas
+        // Normaliza os caracteres do e-mail para minúsculas
         campoEmailLoginNormalizado = converteValorRecebidoEmMinusculo(campoEmailLoginNormalizado);
 
-        console.log(campoEmailLoginNormalizado);
-        console.log(campoSenhaLoginNormalizado);
+        // Exibe os dados informados durante o login
+        console.log(`E-mail informado: ${campoEmailLoginNormalizado}`);
+        console.log(`Senha informada: ${campoSenhaLoginNormalizado}`);
 
+        // Adiciona o e-mail e senha ao objeto da página
         usuarioObjeto.email = campoEmailLoginNormalizado;
         usuarioObjeto.password = campoSenhaLoginNormalizado;
 
-        let loginUsuarioJson = JSON.stringify(usuarioObjeto);
+        // Converte o objeto em string JSON
+        const usuarioObjetoEmString = JSON.stringify(usuarioObjeto);
 
-
-        let urlEndpointLogin = "https://ctd-todo-api.herokuapp.com/v1/users/login";
-        let configuracaoDaRequisicao = {
+        // Prepara o envio do objeto JSON para a API de login
+        const loginUrlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/users/login";
+        const configuracaoDaRequisicao = {
             method: 'POST',
-            body: loginUsuarioJson,
+            body: usuarioObjetoEmString,
             headers: {
                 'Content-Type': 'application/json'
             }
         }
 
-        fetch(urlEndpointLogin, configuracaoDaRequisicao).then(
+        // Envia a requisição para a API de login
+        fetch(loginUrlEndpoint, configuracaoDaRequisicao).then(
+            // Recebe a resposta da API de login
             resultado => {
+                // Verifica o status da resposta
+                // Se o status for 201, o login foi validado com sucesso
                 if (resultado.status == 201) {
                     return resultado.json();
                 }
                 throw resultado;
             }
         )
-        .then(
-            resultado => {
-                console.log(resultado);
-                loginSucesso(resultado.jwt);
-            }
-        )
-        .catch(
-            erro => {
-                console.log(erro);
-                loginErro(erro.status);
-            }
-        );
-
-
+            .then(
+                // Recebe o objeto JSON da API de login
+                resultado => {
+                    // Chama a função sucessoNoLogin para continuar a requisição e armazenar o token no localStorage.
+                    sucessoNoLogin(resultado.jwt);
+                }
+            )
+            .catch(
+                erro => {
+                    // Caso o login não tenha sido bem-sucedido, informa a mensagem no console
+                    // e exibe a mensagem de erro abaixo do formulário de login.
+                    erroNoLogin(erro.status);
+                }
+            )
     } else {
         evento.preventDefault();
-        alert("Preencha o e-mail e senha para fazer o login!")
+        constroiMensagemDeErro("Preencha todos os campos para continuar.", statusLoginMensagem);
     }
-
 });
 
-function loginSucesso(jsonRecebido) {
-    console.log("JSON Recebido: ");
-    console.log(jsonRecebido);
-    alert("Login realizado com sucesso");
+// Validação do login
+function validarLogin() {
+    if (emailEValido && senhaEValida) {
+        return true
+    } else {
+        return false
+    }
 }
 
-function loginErro(statusRecebido) {
-    let validacaoLogin = document.getElementById('validacaoLogin');
+// Função de retorno em caso de sucesso no login
+function sucessoNoLogin(tokenRecebido) {
+    // Exibe no console a resposta recebida da API de login
+    console.log(`JSON Recebido: ${tokenRecebido}`);
+    // Altera a mensagem de erro para informar que o login foi bem-sucedido
+    constroiMensagemInformativa("Redirecionando...", statusLoginMensagem);
 
-    // Limpa o campo da senha ao errar o login
+    sessionStorage.setItem("jwt", tokenRecebido);
+    location.href = "tarefas.html";
+}
+
+// Função de retorno em caso de erro no login
+function erroNoLogin(statusRecebido) {
+    // Limpa o campo da senha
     campoSenhaLogin.value = "";
 
-    console.log(statusRecebido);
+    // Exibe no console o status da resposta da API de login
+    console.log(`Status recebido: ${statusRecebido}`);
+
+    // Altera a mensagem de erro para informar que o login não foi bem-sucedido
     if (statusRecebido == 400 || statusRecebido == 404) {
-        console.log("Ocorreu algum erro, verifique os dados informados e tente novamente.");
-        validacaoLogin.innerHTML = "Ocorreu algum erro, verifique os dados informados e tente novamente.";
-        loginApiValidacao = false;
+        console.log("Falha no login. Verifique o e-mail e senha informados.");
+        constroiMensagemDeErro("Falha no login. Verifique o e-mail e senha informados.", statusLoginMensagem);
+    } else if (statusRecebido == 500) {
+        console.log("Ocorreu um erro no servidor. Tente novamente mais tarde.");
+        constroiMensagemDeErro("Ocorreu um erro no servidor. Tente novamente mais tarde.", statusLoginMensagem);
     } else {
-        loginApiValidacao = true;
+        limpaMensagemDeErro(statusLoginMensagem)
     }
-}
-
-campoEmailLogin.addEventListener('blur', function() {
-
-    let inputEmailValidacao = document.getElementById('inputEmailValidacao');
-
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(campoEmailLogin.value)) {
-        inputEmailValidacao.innerText = "";
-        campoEmailLogin.style.border = "1px solid green";
-        emailEValido = true;
-    } else {
-        inputEmailValidacao.innerText = "Formato de e-mail inválido";
-        inputEmailValidacao.style.color = "red";
-        inputEmailValidacao.style.fontSize = "8";
-        inputEmailValidacao.style.fontWeight = "bold";
-        campoEmailLogin.style.border = "1px solid red";
-        emailEValido = false;
-    }
-
-    validaTelaDeLogin();
-})
-
-campoSenhaLogin.addEventListener('blur', function() {
-
-    let inputSenhaValidacao = document.getElementById('inputSenhaValidacao');
-
-    if (campoSenhaLogin.value != "" && campoSenhaLogin.value.length >= 8) {
-        inputSenhaValidacao.innerText = "";
-        campoSenhaLogin.style.border = "1px solid green";
-        senhaEValida = true;
-    } else {
-        inputSenhaValidacao.innerText = "A senha deve ter no mínimo 8 caracteres";
-        inputSenhaValidacao.style.color = "red";
-        inputSenhaValidacao.style.fontSize = "8";
-        inputSenhaValidacao.style.fontWeight = "bold";
-        campoSenhaLogin.style.border = "1px solid red";
-        senhaEValida = false;
-    }
-
-    validaTelaDeLogin();
-})
-
-function validaTelaDeLogin() {
-    if (emailEValido && senhaEValida) {
-        botaoLogin.removeAttribute('disabled');
-        botaoLogin.innerText = "Entrar";
-        return true;
-    } else if ((emailEValido && !senhaEValida) || (!emailEValido && senhaEValida)) {
-        return false;
-    } else {
-        botaoLogin.setAttribute('disabled', 'true');
-        return false;
-    }
+    validarLogin();
 }
