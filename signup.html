@@ -25,27 +25,32 @@
 
       <label>
         Nome:
-        <input type="text" class="name">
+        <input type="text" id="nameInput">
+        <small id="nameInputMessage"></small>
       </label>
       <label>
-        Apelido:
-        <input type="text" class="nickname">
+        Sobrenome:
+        <input type="text" id="surnameInput">
+        <small id="surnameInputMessage"></small>
       </label>
       <label>
         Email:
-        <input type="text" class="email">
+        <input type="text" id="emailInput">
+        <small id="emailInputMessage"></small>
       </label>
       <label>
         Senha:
-        <input type="password" class="password">
+        <input type="password" id="passwordInput" class="password">
+        <small id="passwordInputMessage"></small>
       </label>
       <label>
         Repetir senha:
-        <input type="password" class="confirm-password">
+        <input type="password" id="passwordConfirmInput" class="confirm-password">
+        <small id="passwordConfirmInputMessage"></small>
       </label>
-      <small id="validacaoCadastro"></small>
-
-      <button>Criar conta</button>
+      
+      <button id="submitButton" type="submit">Criar conta</button>
+      <small id="signupStatusMessage"></small>
 
     </form>
     <div class="ingressar">
@@ -55,7 +60,7 @@
 
   <!-- Validações de Cadastro -->
   <script src="assets/scripts/validacoes/utils.js"></script>
-  <script src="assets/scripts/signup.js"></script>
+  <script src="assets/scripts/signup/signup.js"></script>
 </body>
 
 </html>
