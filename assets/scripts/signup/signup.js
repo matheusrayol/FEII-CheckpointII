@@ -83,6 +83,7 @@ campoConfirmaSenha.addEventListener('input', () => {
 
 // Event Listener - Botão de Submit
 botaoCadastro.addEventListener('click', (event) => {
+	event.preventDefault();
   // Verifica se todos os campos foram preenchidos corretamente.
 	if (validarCadastro()) {
     // Exibe em console o resultado das validações.
