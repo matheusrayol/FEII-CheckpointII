@@ -2,27 +2,39 @@
     "configurations": [
         {
             "type": "pwa-chrome",
-            "name": "Server Chrome",
+            "name": "Chrome+LiveServer",
             "request": "launch",
-            "url": "http://127.0.0.1:5500/?"
+            "url": "http://localhost:5500"
         },
         {
             "type": "pwa-chrome",
-            "name": "Local Chrome",
+            "name": "Chrome+Local",
             "request": "launch",
             "file": "${workspaceFolder}"
         },
         {
             "type": "firefox",
-            "name": "Server firefox",
+            "name": "Firefox+LiveServer",
             "request": "launch",
-            "url": "http://127.0.0.1:5500/?"
+            "url": "http://localhost:5500"
         },
         {
             "type": "firefox",
-            "name": "Local firefox",
+            "name": "Firefox+Local",
             "request": "launch",
             "file": "${workspaceFolder}"
         },
+        {
+            "type": "msedge",
+            "name": "Edge+LiveServer",
+            "request": "launch",
+            "url": "http://localhost:5500"
+        },
+        {
+            "type": "msedge",
+            "name": "Edge+Local",
+            "request": "launch",
+            "file": "${workspaceFolder}"
+        }
     ]
 }
