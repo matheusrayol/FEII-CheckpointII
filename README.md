@@ -22,10 +22,8 @@ App To-Do: Aplicação Web para gerenciamento de tarefas
 - Validações de execução da API de login<br/>(*Mesa de trabalho, Fábio Neres, Henrique Santos, Matheus Rayol*);
 - Validações do formulário de cadastro<br/>(*Pedro Marques*);
 - Validações de execução da API de cadastro<br/>(*Mesa de trabalho, Fábio Neres, Henrique Santos, Matheus Rayol, Pedro Marques*);
-- Estilização da página de login e da página de cadastro com Bootstrap 5<br/>(*Matheus Ferreira*);
-- Alteração das imagens personalizadas nas etapas de login e cadastro<br/>(*Matheus Ferreira*);
+- Estilização da página de login e da página de cadastro e mensagem de erro com Bootstrap 5<br/>(*Matheus Ferreira*);
 - Estilização da área inicial da página de tarefas (Cadastro de tarefas, barra de navegação e lista de tarefas pendentes)<br/>(*Matheus Ferreira*);
-- Estilização da mensagem de erro caso usuário tente acessar a área de tarefas sem estar logado<br/>(*Matheus Ferreira*);
 
 ## O que falta fazer
 - Concluir a estilização da página de tarefas (Lista de tarefas concluídas);
