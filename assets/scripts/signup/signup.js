@@ -1,16 +1,16 @@
 // Captura dos campos necessários para as validações de cadastro
-const campoNome = document.getElementById('nameInput');
-const campoNomeMensagem = document.getElementById('nameInputMessage');
-const campoSobrenome = document.getElementById('surnameInput');
-const campoSobrenomeMensagem = document.getElementById('surnameInputMessage');
-const campoEmail = document.getElementById('emailInput');
-const campoEmailMensagem = document.getElementById('emailInputMessage');
-const campoSenha = document.getElementById('passwordInput');
-const campoSenhaMensagem = document.getElementById('passwordInputMessage');
-const campoConfirmaSenha = document.getElementById('passwordConfirmInput');
-const campoConfirmaSenhaMensagem = document.getElementById('passwordConfirmInputMessage');
-const botaoCadastro = document.getElementById('submitButton');
-const statusCadastroMensagem = document.getElementById('signupStatusMessage');
+const campoNome = document.getElementById('name-input');
+const campoNomeMensagem = document.getElementById('name-input-message');
+const campoSobrenome = document.getElementById('surname-input');
+const campoSobrenomeMensagem = document.getElementById('surname-input-message');
+const campoEmail = document.getElementById('email-input');
+const campoEmailMensagem = document.getElementById('email-input-message');
+const campoSenha = document.getElementById('password-input');
+const campoSenhaMensagem = document.getElementById('password-input-message');
+const campoConfirmaSenha = document.getElementById('password-confirm-input');
+const campoConfirmaSenhaMensagem = document.getElementById('password-confirm-input-message');
+const botaoCadastro = document.getElementById('submit-button');
+const statusCadastroMensagem = document.getElementById('signup-status-message');
 const formularioCadastro = document.querySelector('form');
 
 // Criação do objeto que receberá as informações de cadastro para envio
@@ -25,10 +25,13 @@ const cadastroUsuarioObjeto = {
 campoNome.addEventListener('input', () => { 
   // Verifica se o campo Nome foi preenchido corretamente.
 	if (validateName()) {
-		campoNome.style.border = "1px solid green";
+		campoNome.style.border = "3px solid #5369f8";
 		limpaMensagemDeErro(campoNomeMensagem);
-	} else {
-		campoNome.style.border = "1px solid red";
+	} else if (campoNome.value == "") {
+        campoNome.style.border = "3px solid #ced4da"
+        limpaMensagemDeErro(campoNomeMensagem)
+    } else {
+		campoNome.style.border = "3px solid red";
 		constroiMensagemDeErro("O nome deve possuir ao menos 2 caracteres.", campoNomeMensagem);
 	}
 });
@@ -37,10 +40,13 @@ campoNome.addEventListener('input', () => {
 campoSobrenome.addEventListener('input', () => {
   // Verifica se o campo Nome foi preenchido corretamente.
 	if (validateSurname()) {
-		campoSobrenome.style.border = "1px solid green";
+		campoSobrenome.style.border = "3px solid #5369f8";
 		limpaMensagemDeErro(campoSobrenomeMensagem);
-	} else {
-		campoSobrenome.style.border = "1px solid red";
+	} else if (campoSobrenome.value == "") {
+        campoSobrenome.style.border = "3px solid #ced4da";
+        limpaMensagemDeErro(campoSobrenomeMensagem);
+    } else {
+		campoSobrenome.style.border = "3px solid red";
 		constroiMensagemDeErro("O sobrenome deve possuir ao menos 2 caracteres.", campoSobrenomeMensagem);
 	}
 });
@@ -49,10 +55,13 @@ campoSobrenome.addEventListener('input', () => {
 campoEmail.addEventListener('input', () => {
   // Verifica se o campo Email foi preenchido corretamente.
 	if (validateEmail()) {
-		campoEmail.style.border = "1px solid green";
+		campoEmail.style.border = "3px solid #5369f8";
 		limpaMensagemDeErro(campoEmailMensagem);
-	} else {
-		campoEmail.style.border = "1px solid red";
+	} else if (campoEmail.value == "") {
+        campoEmail.style.border = "3px solid #ced4da";
+        limpaMensagemDeErro(campoEmailMensagem);
+    } else {
+		campoEmail.style.border = "3px solid red";
 		constroiMensagemDeErro("O e-mail deve possuir o formato seu@email.com", campoEmailMensagem);
 	}
 });
@@ -61,10 +70,13 @@ campoEmail.addEventListener('input', () => {
 campoSenha.addEventListener('input', () => {
   // Verifica se o campo Senha foi preenchido corretamente.
 	if (validatePassword()) {
-		campoSenha.style.border = "1px solid green";
+		campoSenha.style.border = "3px solid #5369f8";
 		limpaMensagemDeErro(campoSenhaMensagem);
-	} else {
-		campoSenha.style.border = "1px solid red";
+	} else if (campoSenha.value == "") {
+        campoSenha.style.border = "3px solid #ced4da";
+        limpaMensagemDeErro(campoSenhaMensagem);
+    } else {
+		campoSenha.style.border = "3px solid red";
 		constroiMensagemDeErro("A senha deve possuir ao menos 8 caracteres.", campoSenhaMensagem);
 	}
 });
@@ -73,10 +85,13 @@ campoSenha.addEventListener('input', () => {
 campoConfirmaSenha.addEventListener('input', () => {
   // Verifica se o campo Confirmação de Senha corresponde ao conteúdo do campo Senha.
 	if (validatePasswordConfirmation()) {
-		campoConfirmaSenha.style.border = "1px solid green";
+		campoConfirmaSenha.style.border = "3px solid #5369f8";
 		limpaMensagemDeErro(campoConfirmaSenhaMensagem);
-	} else {
-		campoConfirmaSenha.style.border = "1px solid red";
+	} else if (campoConfirmaSenha.value == "") {
+        campoConfirmaSenha.style.border = "3px solid #ced4da";
+        limpaMensagemDeErro(campoConfirmaSenhaMensagem);
+    } else {
+		campoConfirmaSenha.style.border = "3px solid red";
 		constroiMensagemDeErro("As senhas informadas não correspondem.", campoConfirmaSenhaMensagem);
 	}
 });

@@ -1,0 +1,468 @@
+/* Regras globais - Espaçamentos, fontes e cores */
+
+:root {
+  --gutter-x: 1.5rem;
+  --gutter-y: 0;
+  --fonte-poppins: 'Poppins', sans-serif;
+  --fonte-ubuntu: 'Ubuntu', sans-serif;
+  --cor-fonte: #333 !important;
+  --cor-fundo: #fff !important;
+  --cor-destaque: #5369f8 !important;
+  --cor-destaque-hover: #2743f5 !important;
+  --cor-background: #19204d !important;
+  --cor-borda-input: #ccc !important;
+  --cor-texto-input: #333 !important;
+}
+
+/* Aplicado Globalmente */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  padding-inline-start: 0;
+}
+
+/* Altera o comportamento do scrolling */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Definição de fonte padrão para o corpo do site, cor padrão e fundo padrão */
+
+body {
+  font-family: var(--fonte-ubuntu);
+  color: var(--cor-fonte);
+  background-color: var(--cor-background);
+}
+
+/* Definição da cor padrão dos links */
+
+a {
+  color: var(--cor-destaque);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--cor-destaque-hover);
+}
+
+a:focus {
+  color: var(--cor-destaque-hover);
+}
+
+/* Ignora o padding para listas ordenadas e desordenadas */
+
+ol, ul {
+  padding-left: 0;
+}
+
+/* Estilização da área principal do site,
+centralizando os componentes internos para melhor
+visualização, e definindo o espaçamento */
+
+.centered-form {
+  padding: 50px 0;
+  height: 100vh;
+  align-items: center !important;
+  display: flex;
+}
+
+/* Define a cor e a fonte para textos em destaque, como títulos */
+
+.text-theme {
+  font-family: var(--fonte-poppins);
+  color: var(--cor-destaque);
+}
+
+/* Estilo padrão para botões utilizados no projeto */
+
+.btn-apptodo {
+  color: white;
+  background-color: var(--cor-destaque);
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: none;
+  padding: .375rem .75rem;
+  font-family: var(--fonte-poppins);
+  font-size: 1.2rem;
+  border-radius: .25rem;
+  transition: background-color .5s ease-in-out;
+}
+
+.btn-apptodo:hover {
+  color: white;
+  background-color: var(--cor-destaque-hover);
+}
+
+/* Configuração do bloco de exibição das imagens nas páginas de login, cadastro, e de erro */
+
+.splash-block {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 380px;
+  background-position: center;
+  height: 100%;
+}
+
+/* Imagem da página de erro */
+
+.splash-block.blocked {
+  background-image: url("../../assets/img/acesso_proibido.svg");
+}
+
+/* Imagem da página de login */
+
+.splash-block.login {
+  background-image: url("../../assets/img/login_form.svg");
+}
+
+/* Imagem da página de cadastro */
+
+.splash-block.signup {
+  background-image: url("../../assets/img/signup_form.svg");
+}
+
+/* Configuração de estilização de fundo dos
+cards de login, cadastro e erro */
+
+.card {
+  background-color: var(--cor-fundo);
+}
+
+/* Estilização de formulários */
+
+.form-control {
+  border: 3px solid var(--cor-borda-input);
+  background-color: var(--cor-fundo);
+  color: var(--cor-fonte);
+}
+
+.form-control:focus {
+  color: var(--cor-fonte);
+  background-color: var(--cor-fundo);
+  border-color: var(--cor-borda-input);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--cor-destaque);
+}
+
+/* Estilização de ícones */
+
+.fas.fa-check {
+  color: white;
+}
+
+.fas.fa-check:hover {
+  color: white;
+}
+
+/* --------------- Área Logada --------------- */
+
+/* Barra de navegação */
+
+.navegacao-tarefas {
+  height: 70px;
+  display: flex;
+  padding: 0 1rem;
+  background-color: var(--cor-background);
+}
+
+/* Área de informações do usuário */
+
+.user-info {
+  margin-left: auto;
+  color: white;
+}
+
+/* Imagem de perfil do usuário */
+
+.user-image {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  margin-left: .7em;
+  background: url("../../assets/img/profile_photo.png") center/contain no-repeat;
+}
+
+/* Botão para encerrar a sessão */
+
+.encerrar-sessao {
+  margin-left: 15px;
+  font-size: .8rem;
+  background-color: var(--bs-danger);
+  color: white;
+  border-radius: 50vh;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+/* Área para criação de nova tarefa */
+
+.nova-tarefa {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--cor-fundo);
+  width: 80%;
+  margin: 0 10%;
+  padding: 1.1rem;
+  border-radius: .5rem;
+  z-index: 20;
+}
+
+@media (min-width: 300px) {
+  .nova-tarefa {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .nova-tarefa {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.nova-tarefa input[type=text] {
+  flex: 1;
+  border-radius: .5rem !important;
+  padding: .3em;
+  font-size: 1.1em;
+}
+
+.nova-tarefa input::placeholder {
+  color: var(--cor-texto-input);
+  text-indent: .2em;
+}
+
+.contador {
+  color: var(--cor-fonte);
+  background-color: var(--cor-fundo);
+  border-radius: 0;
+  border: var(--cor-fundo);
+}
+
+.task-button {
+  color: white;
+  font-size: 1.5rem;
+  padding: .4rem .5rem;
+  background-color: var(--cor-destaque);
+  border-radius: 50%;
+  margin-left: 1rem;
+  line-height: 1.5rem;
+  transition: background-color .5s ease-in-out;
+}
+
+.task-button:focus {
+  color: white;
+  background-color: var(--cor-destaque-hover);
+}
+
+.task-button:hover {
+  color: white;
+  background-color: var(--cor-destaque-hover);
+}
+
+#skeleton {
+  animation: transparencia 1s infinite;
+}
+
+#skeleton .tarefa .not-done {
+  position: relative;
+  height: 1.8rem;
+  width: 1.8rem;
+  background-color: grey;
+  border: 2px solid grey;
+  color: var(--cor-fundo);
+  z-index: 2;
+  transition: all 200ms linear;
+}
+
+#skeleton .descricao, #skeleton .fas.fa-check {
+  background-color: grey !important;
+  color: grey !important;
+}
+
+#skeleton p {
+  background-color: lightgrey !important;
+  color: lightgrey !important;
+}
+
+.tarefas-pendentes {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  list-style: none;
+  margin: 1.5rem 15%;
+}
+
+@media (min-width: 300px) {
+  .tarefas-pendentes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    margin: 1.5rem 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .tarefas-pendentes {
+    width: 90%;
+    margin: 1.5rem 5%;
+  }
+}
+
+.tarefa {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.tarefa .not-done {
+  position: relative;
+  height: 1.8rem;
+  width: 1.8rem;
+  background-color: var(--cor-fundo);
+  border: 2px solid var(--cor-fundo);
+  color: var(--cor-fundo);
+  z-index: 2;
+  transition: all 200ms linear;
+}
+
+.tarefa .not-done:hover {
+  background-color: var(--cor-destaque-hover);
+  color: white;
+}
+
+.tarefa .descricao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  background-color: var(--cor-fundo);
+  padding: 1rem 2rem;
+  border-radius: .5rem;
+}
+
+@media (max-width: 576px) {
+  .tarefa .descricao {
+    display: block;
+  }
+}
+
+.tarefa .nome {
+  color: var(--cor-texto);
+  text-align: justify;
+}
+
+.tarefa .timestamp {
+  font-size: .9em;
+  display: flex !important;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  .tarefa .timestamp {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: .2rem;
+  }
+}
+
+.not-done {
+  width: 2em;
+  height: 2em;
+  background-color: var(--cor-fundo);
+  margin-right: 1em;
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+}
+
+.titulo-terminadas {
+  position: relative;
+  width: 50%;
+  text-align: center;
+  padding: .5em 1em;
+  background-color: var(--cor-fundo);
+  border-radius: .25em;
+  color: var(--cor-destaque);
+  font-weight: 800;
+  font-size: 1.2rem;
+  z-index: 20;
+}
+
+.tarefas-terminadas {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  list-style: none;
+  margin: 2em 15%;
+}
+
+.tarefas-terminadas i {
+  color: grey;
+  background-color: var(--cor-fundo);
+}
+
+.tarefas-terminadas button {
+  margin-left: 10px;
+}
+
+.tarefas-terminadas .tarefa .descricao {
+  background-color: var(--cor-fundo);
+}
+
+.tarefas-terminadas .tarefa .descricao .nome {
+  color: grey;
+  text-decoration: line-through;
+}
+
+/* Animações */
+
+@keyframes transparencia {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+/* Ajustes para o Dark Mode automático */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-fonte: lightgrey !important;
+    --cor-fundo: black !important;
+    --cor-texto-input: lightgrey !important;
+    --cor-background: #111640 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .fas.fa-check {
+    color: black;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .fas.fa-check:hover {
+    color: white;
+  }
+}
+
+p.nome {
+  margin-bottom: 0;
+}
+

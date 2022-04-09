@@ -1,51 +1,88 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>To-Do App</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App To-Do | Login</title>
 
-        <!-- Folha de estilos compartilhada entre Login e Registro -->
-        <link rel="stylesheet" href="assets/styles/acesso.css">
+    <!-- SEO / Opengraph / Twitter Share -->
+    <meta name="theme-color" content="#19204d ">
+    <meta name="twitter:image" content="assets/img/todoapp_opengraph.png">
+    <meta name="description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="assets/img/todoapp_opengraph.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="App To-Do: Organize suas tarefas">
+    <meta property="og:description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
+    <meta name="twitter:description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
 
-    </head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/img/todoapp_favicon.png">
 
-    <body>
-        <div class="left">
-            <img src="assets/img/pessoa-login.png" alt="">
-        </div>
+    <!-- Folha de estilos: Bootstrap 5.1 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
 
-        <div class="right">
-            <form>
-                <div class="form-header">
-                    <p>To-Do App</p>
+    <!-- Fontes personalizadas: Ubuntu / Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu&amp;display=swap">
+
+    <!-- Ícones FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+    <!-- Folha de estilos do App To-Do -->
+    <link rel="stylesheet" href="assets/styles/apptodo.css">
+</head>
+
+<body>
+    <!-- Seção principal: Área de login-->
+    <section id="login-screen" class="centered-form" hidden="true">
+        <div class="container" id="login-wrapper">
+            <div class="row justify-content-center">
+                <div class="col-xl-10 col-xxl-9">
+                    <div class="card border-0">
+                        <div class="card-body p-0">
+                            <div class="row g-0">
+                                <!-- Coluna Formulário -->
+                                <div class="col-lg-6">
+                                    <div class="p-5">
+                                        <div class="mb-5">
+                                            <h3 class="fw-bold h4 text-theme">Login</h3>
+                                        </div>
+                                        <div>
+                                            <h6 class="h5 mb-0">Boas-vindas de volta!</h6>
+                                            <p class="mt-1 mb-3">Insira seu endereço de e-mail e senha para acessar a sua lista de tarefas.</p>
+                                        </div>
+                                        <form id="formulario-login">
+                                            <div class="mb-2"><label class="form-label mb-0">E-mail:</label>
+                                                <div class="input-group"><input class="form-control" type="text" id="email-input"></div><small id="email-input-message" class="text-danger"></small>
+                                            </div>
+                                            <div class="mb-4"><label class="form-label mb-0">Senha:</label>
+                                                <div class="input-group"><input class="form-control" type="password" id="password-input"></div><small id="password-input-message" class="text-danger"></small>
+                                            </div>
+                                            <div class="justify-content-between align-items-center d-flex flex-row"><button id="submit-button" class="btn-apptodo" type="submit">Fazer Login</button><a href="signup.html">Cadastre-se</a></div><small id="login-status-message" class="text-danger mt-2"></small>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- Coluna Imagem -->
+                                <div class="col-lg-6 d-none d-lg-inline-block">
+                                    <div class="splash-block login"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h1>Acessar</h1>
-                <label>
-                    Email:
-                    <input id="emailInput" type="text">
-                    <small id="emailInputMessage"></small>
-                </label>
-                <label>
-                    Senha:
-                    <input id="passwordInput" type="password">
-                    <small id="passwordInputMessage"></small>
-                </label>
-
-                <button id="submitButton" type="submit">Fazer Login</button>
-                <small id="loginStatusMessage"></small>
-                
-            </form>
-            <div class="ingressar">
-                <a href="signup.html">Não possui conta? Crie agora mesmo</a>
             </div>
         </div>
+    </section>
 
-        <!-- Validações de Login -->
-        <script src="assets/scripts/validacoes/utils.js"></script>
-        <script src="assets/scripts/login/login.js"></script>
-    </body>
+    <!-- Script do Bootstrap 5.1 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scripts do To-Do -->
+    <script src="assets/scripts/login/login.js"></script>
+    <script src="assets/scripts/validacoes/utils.js"></script>
+</body>
 
 </html>

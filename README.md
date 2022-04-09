@@ -22,16 +22,22 @@ App To-Do: Aplicação Web para gerenciamento de tarefas
 - Validações de execução da API de login<br/>(*Mesa de trabalho, Fábio Neres, Henrique Santos, Matheus Rayol*);
 - Validações do formulário de cadastro<br/>(*Pedro Marques*);
 - Validações de execução da API de cadastro<br/>(*Mesa de trabalho, Fábio Neres, Henrique Santos, Matheus Rayol, Pedro Marques*);
+- Estilização da página de login e da página de cadastro com Bootstrap 5 (*Matheus Ferreira*);
+- Alteração das imagens personalizadas nas etapas de login e cadastro (*Matheus Ferreira*);
+- Estilização da área inicial da página de tarefas (Cadastro de tarefas, barra de navegação e lista de tarefas pendentes)(*Matheus Ferreira*);
+- Estilização da mensagem de erro caso usuário tente acessar a área de tarefas sem estar logado (*Matheus Ferreira*);
 
 ## O que falta fazer
-- Inclusão de imagens personalizadas para etapas de login e cadastro;
-- Estilização da página de login e da página de cadastro com Bootstrap 5;
-- Validações de execução da API na área logada (inclusão de tarefa, edição de tarefas, listagem de tarefas, logout, exibição de informações da conta, etc);
-- Estilização da página de tarefas para os itens necessários;
-- Outros itens ainda não apresentados para o Checkpoint II.
+- Concluir a estilização da página de tarefas (Lista de tarefas concluídas);
+- Validar se a responsividade está correta nos breakpoints necessários;
+- Criação da chamada de API da área logada para exibir o nome do usuário;
+- Criação da função para remoção do token do sessionStorage e realização de logout do usuário;
+- Criação da chamada de API para listar as tarefas do usuário na área logada;
+- Criação da chamada de API para listar as tarefas concluídas do usuário na área logada;
+- Criação da chamada de API para alteração do status de uma tarefa (concluída ou a fazer).
 
 ## Opcional
-- Inclusão de uma área extra em alguma página para a exibição do nome dos participantes do projeto.
+- Criação de um rodapé na área logada para inclusão dos membros do grupo e suas informações de contato (opcional).
 
 # Direitos autorais
 - <a href="https://storyset.com/data">Data illustrations by Storyset</a>

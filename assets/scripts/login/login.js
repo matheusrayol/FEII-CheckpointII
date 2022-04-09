@@ -1,10 +1,27 @@
 // Captura dos campos necessários para as validações iniciais
-const campoEmailLogin = document.getElementById('emailInput');
-const campoEmailMensagem = document.getElementById('emailInputMessage');
-const campoSenhaLogin = document.getElementById('passwordInput');
-const campoSenhaMensagem = document.getElementById('passwordInputMessage');
-const botaoLogin = document.getElementById('submitButton');
-const statusLoginMensagem = document.getElementById('loginStatusMessage');
+const campoEmailLogin = document.getElementById('email-input');
+const campoEmailMensagem = document.getElementById('email-input-message');
+const campoSenhaLogin = document.getElementById('password-input');
+const campoSenhaMensagem = document.getElementById('password-input-message');
+const botaoLogin = document.getElementById('submit-button');
+const statusLoginMensagem = document.getElementById('login-status-message');
+const areaLogin = document.getElementById('login-screen');
+
+// Verifica se o usuário já está conectado. 
+onload = function () {
+    let tokenJwt = sessionStorage.getItem('jwt')
+    // Se o token de usuário estiver presente no Session Storage
+    if (tokenJwt) {
+        // Redireciona o usuário para a área logada
+        window.location.href = "tarefas.html"
+    } 
+    // Se o token de usuário não estiver presente no Session Storage
+    else {
+        // Exibe a informação no console e habilita a área de login
+        console.log("Usuário desconectado. Exibindo página de login.")
+        areaLogin.removeAttribute('hidden');
+    }
+}
 
 // Inicializa as variáveis que receberão os valores dos campos de e-mail e senha normalizados
 let campoEmailLoginNormalizado;
@@ -25,13 +42,18 @@ campoEmailLogin.addEventListener('input', () => {
 
     // Verifica se o campo de e-mail está com um e-mail em formato válido. Caso esteja, altera a borda do elemento para verde e remove qualquer mensagem de erro existente.
     if (/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(campoEmailLogin.value)) {
-        campoEmailLogin.style.border = "1px solid green";
+        campoEmailLogin.style.border = "3px solid #5369f8";
         limpaMensagemDeErro(campoEmailMensagem);
         emailEValido = true;
     }
-    // Caso ainda não esteja com o formato válido, altera a borda do elemento para vermelho e a mensagem de erro é exibida assim que o texto começar a ser introduzido no campo.
+    else if (campoEmailLogin.value == "") {
+        campoEmailLogin.style.border = "3px solid #ced4da"
+        limpaMensagemDeErro(campoEmailMensagem);
+        emailEValido = false;
+    }
+    // Caso ainda não esteja com o formato válido, altera a borda do elemento para vermelho e a mensagem de erro é exibida assim que o texto começar a ser introduzido no campo.    
     else {
-        campoEmailLogin.style.border = "1px solid red";
+        campoEmailLogin.style.border = "3px solid red";
         constroiMensagemDeErro("Formato de E-mail inválido.", campoEmailMensagem);
         emailEValido = false;
     }
@@ -42,13 +64,18 @@ campoSenhaLogin.addEventListener('input', () => {
 
     // Verifica se o campo de senha não está vazio, e que ele possui o mínimo de 8 caracteres. Caso possua, remove qualquer mensagem de erro e altera a borda do elemento para verde.
     if (campoSenhaLogin.value.length >= 8 && campoSenhaLogin.value != "") {
-        campoSenhaLogin.style.border = "1px solid green";
+        campoSenhaLogin.style.border = "3px solid #5369f8";
         limpaMensagemDeErro(campoSenhaMensagem);
         senhaEValida = true;
     }
+    else if (campoSenhaLogin.value == "") {
+        campoSenhaLogin.style.border = "3px solid #ced4da";
+        limpaMensagemDeErro(campoSenhaMensagem);
+        senhaEvalida = false;
+    } 
     // Caso o campo de senha ainda não tenha o mínimo de 8 caracteres, a mensagem de erro é exibida assim que o texto começar a ser introduzido no campo.
     else {
-        campoSenhaLogin.style.border = "1px solid red";
+        campoSenhaLogin.style.border = "3px solid red";
         constroiMensagemDeErro("A senha deve possuir no mínimo 8 caracteres.", campoSenhaMensagem);
         senhaEValida = false;
     }
@@ -120,7 +147,7 @@ botaoLogin.addEventListener('click', evento => {
             )
     } else {
         evento.preventDefault();
-        constroiMensagemDeErro("Preencha todos os campos para continuar.", statusLoginMensagem);
+        constroiMensagemDeErro("Preencha todos os campos corretamente.", statusLoginMensagem);
     }
 });
 
@@ -148,6 +175,7 @@ function sucessoNoLogin(tokenRecebido) {
 function erroNoLogin(statusRecebido) {
     // Limpa o campo da senha
     campoSenhaLogin.value = "";
+    campoSenhaLogin.style.border = "3px solid #ced4da";
 
     // Exibe no console o status da resposta da API de login
     console.log(`Status recebido: ${statusRecebido}`);

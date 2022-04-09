@@ -30,4 +30,3 @@ function constroiMensagemInformativa(mensagemInformativa, campoDeExibicao) {
 function limpaMensagemDeErro(campoDeExibicao) {
     campoDeExibicao.innerText = "";
 }
-
