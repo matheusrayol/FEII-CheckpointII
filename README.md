@@ -42,4 +42,5 @@ App To-Do: Aplicação Web para gerenciamento de tarefas
 - <a href="https://storyset.com/user">User illustrations by Storyset</a>
 - <a href="https://storyset.com/online">Online illustrations by Storyset</a>
 - <a href='https://www.freepik.com/vectors/avatar-face'>Avatar face vector created by studiogstock - www.freepik.com</a>
+- <a href="https://www.flaticon.com/free-icons/to-do" title="to do icons">To do icons created by Freepik - Flaticon</a>
 
