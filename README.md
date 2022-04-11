@@ -4,7 +4,7 @@ Olá! Este é o repositório do Checkpoint II da disciplina de Front-End II, do 
 # Equipe
 
 - [Matheus Rayol](https://github.com/matheusrayol)
-- [Henrique Santos](https://github.com/henriquec)
+- [Henrique Santos](https://github.com/HenriqueC4)
 - [Fábio Neres](https://github.com/neresfabio)
 - [Marcelo Magalhães](https://github.com/marcelomagal)
 - [Pedro Marques](http://github.com/pedromarqs)
