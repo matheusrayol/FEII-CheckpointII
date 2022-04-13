@@ -133,7 +133,7 @@ botaoCadastro.addEventListener('click', (event) => {
 			resultado => {
 				// Verifica o status da resposta
 				// Se o status for 201, o cadastro foi efetuado com sucesso
-				if (resultado.status == 200) {
+				if (resultado.status == 201) {
 					return resultado.json();
 				}
 				throw resultado;
