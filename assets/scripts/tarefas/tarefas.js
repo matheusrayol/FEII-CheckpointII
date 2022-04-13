@@ -5,6 +5,7 @@ let areaBloqueada = document.getElementById('area-alerta');
 let areaConectada = document.getElementById('area-logada');
 
 onload = function () {
+    // REFATORAÇÃO: É possível criarmos uma função que executa a verificação do token tanto para o localStorage quanto para o SessionStorage.
     let tokenJwt = sessionStorage.getItem('jwt')
 
     if (!tokenJwt) {
@@ -17,6 +18,7 @@ onload = function () {
 
 }
 
+// Contador de caracteres no campo de nova tarefa
 campoNovaTarefa.onkeyup = function () {
     contarCaracteres.innerHTML = 140 - this.value.length;
 };

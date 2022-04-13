@@ -9,6 +9,8 @@ const areaLogin = document.getElementById('login-screen');
 
 // Verifica se o usuário já está conectado. 
 onload = function () {
+
+    // REFATORAÇÃO: É possível criarmos uma função que executa a verificação do token tanto para o localStorage quanto para o SessionStorage.
     let tokenJwt = sessionStorage.getItem('jwt')
     // Se o token de usuário estiver presente no Session Storage
     if (tokenJwt) {
@@ -110,6 +112,7 @@ botaoLogin.addEventListener('click', evento => {
         const usuarioObjetoEmString = JSON.stringify(usuarioObjeto);
 
         // Prepara o envio do objeto JSON para a API de login
+        // REFATORAÇÃO: Ficaria melhor se criássemos uma função para a geração das calls de API de acordo com o tipo de requisição presente na documentação (GET, POST, PUT, DELETE)
         const loginUrlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/users/login";
         const configuracaoDaRequisicao = {
             method: 'POST',

@@ -101,7 +101,8 @@ botaoCadastro.addEventListener('click', (event) => {
 	event.preventDefault();
   // Verifica se todos os campos foram preenchidos corretamente.
 	if (validarCadastro()) {
-    // Exibe em console o resultado das validações.
+    // REFATORAÇÃO: Exibe em console o resultado das validações. 
+	// Acho que podemos remover as instâncias de console.log de todos os códigos quando terminarmos o desenvolvimento.
 		console.log('validateName: ' + validateName());
 		console.log('validateSurname: ' + validateSurname());
 		console.log('validateEmail: ' + validateEmail());
@@ -165,8 +166,7 @@ function sucessoNoCadastro(tokenRecebido) {
 	// Altera a mensagem de erro para informar que o login foi bem-sucedido
 	constroiMensagemInformativa("Redirecionando...", statusCadastroMensagem);
 
-  sessionStorage.setItem('jwt', tokenRecebido);
-	location.href = "index.html";
+	setTimeout(() => {location.href = "index.html";}, 1500);	
 }
 
 // Função de retorno em caso de erro no login
@@ -188,6 +188,8 @@ function erroNoCadastro(statusRecebido) {
 }
 
 // Validação do campo Nome
+// REFATORAÇÃO: Acho que podemos unificar todas as validações em uma única função que receba o campo como parâmetro, 
+// então criamos uma condicional (ou um switch case) de acordo com o parâmetro que foi inserido.
 const validateName = () => {
 	const nameHasOnlyString = !/\d/g.test(campoNome.value);
 	const maxLength = 20;
