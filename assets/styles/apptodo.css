@@ -69,6 +69,12 @@ visualização, e definindo o espaçamento */
   display: flex;
 }
 
+/* Estilização dos containers para que a alternância de
+tamanho nos breakpoints seja suave */
+.container {
+  transition: max-width .25s linear;
+}
+
 /* Define a cor e a fonte para textos em destaque, como títulos */
 
 .text-theme {
