@@ -58,6 +58,12 @@ ol, ul {
   padding-left: 0;
 }
 
+/* Estilização dos containers para que a alternância de
+tamanho nos breakpoints seja suave */
+.container {
+  transition: max-width .25s linear;
+}
+
 /* Estilização da área principal do site,
 centralizando os componentes internos para melhor
 visualização, e definindo o espaçamento */
@@ -67,12 +73,6 @@ visualização, e definindo o espaçamento */
   height: 100vh;
   align-items: center !important;
   display: flex;
-}
-
-/* Estilização dos containers para que a alternância de
-tamanho nos breakpoints seja suave */
-.container {
-  transition: max-width .25s linear;
 }
 
 /* Define a cor e a fonte para textos em destaque, como títulos */
@@ -155,16 +155,6 @@ cards de login, cadastro e erro */
   border-color: var(--cor-borda-input);
   outline: 0;
   box-shadow: 0 0 0 0.25rem var(--cor-destaque);
-}
-
-/* Estilização de ícones */
-
-.fas.fa-check {
-  color: white;
-}
-
-.fas.fa-check:hover {
-  color: white;
 }
 
 /* --------------- Área Logada --------------- */
@@ -332,7 +322,7 @@ cards de login, cadastro e erro */
   margin-bottom: 1.5rem;
 }
 
-.tarefa .not-done {
+.tarefa .not-done, .tarefa .done {
   position: relative;
   height: 1.8rem;
   width: 1.8rem;
@@ -343,7 +333,7 @@ cards de login, cadastro e erro */
   transition: all 200ms linear;
 }
 
-.tarefa .not-done:hover {
+.tarefa .not-done:hover, .tarefa .done:hover {
   background-color: var(--cor-destaque-hover);
   color: white;
 }
@@ -382,10 +372,11 @@ cards de login, cadastro e erro */
     flex-direction: row;
     justify-content: center;
     column-gap: .2rem;
+    margin-top: 1rem;
   }
 }
 
-.not-done {
+.not-done, .done {
   width: 2em;
   height: 2em;
   background-color: var(--cor-fundo);
@@ -399,13 +390,19 @@ cards de login, cadastro e erro */
   position: relative;
   width: 50%;
   text-align: center;
-  padding: .5em 1em;
+  padding: 1rem 1rem;
   background-color: var(--cor-fundo);
   border-radius: .25em;
   color: var(--cor-destaque);
   font-weight: 800;
   font-size: 1.2rem;
   z-index: 20;
+}
+
+@media (max-width: 768px) {
+  .titulo-terminadas {
+    width: 100%;
+  }
 }
 
 .tarefas-terminadas {
@@ -456,19 +453,26 @@ cards de login, cadastro e erro */
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .fas.fa-check {
-    color: black;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .fas.fa-check:hover {
-    color: white;
-  }
-}
-
 p.nome {
   margin-bottom: 0;
 }
 
+.form-check-input {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--cor-fundo);
+  border: 3px solid var(--cor-borda-input);
+  margin: auto .4rem;
+}
+
+.form-check-input:focus {
+  background-color: var(--cor-fundo);
+  border-color: var(--cor-borda-input);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--cor-destaque);
+}
+
+.form-check-input:checked {
+  background-color: var(--cor-destaque);
+  border-color: var(--cor-destaque);
+}

@@ -1,3 +1,42 @@
+// Captura de campos - Campos comuns entre páginas
+const campoEmail = document.getElementById('email-input');
+const campoEmailMensagem = document.getElementById('email-input-message');
+const campoSenha = document.getElementById('password-input');
+const campoSenhaMensagem = document.getElementById('password-input-message');
+
+// Captura de campos - Página de login
+const checkboxManterLogin = document.getElementById('manter-login');
+const botaoLogin = document.getElementById('submit-button');
+const statusLoginMensagem = document.getElementById('login-status-message');
+const areaLogin = document.getElementById('login-screen');
+
+// Captura de campos - Página de cadastro
+const campoNome = document.getElementById('name-input');
+const campoNomeMensagem = document.getElementById('name-input-message');
+const campoSobrenome = document.getElementById('surname-input');
+const campoSobrenomeMensagem = document.getElementById('surname-input-message');
+const campoConfirmaSenha = document.getElementById('password-confirm-input');
+const campoConfirmaSenhaMensagem = document.getElementById('password-confirm-input-message');
+const botaoCadastro = document.getElementById('submit-button');
+const statusCadastroMensagem = document.getElementById('signup-status-message');
+const formularioCadastro = document.querySelector('form');
+
+// Variáveis - Localização dos tokens
+let tokenJwt = sessionStorage.getItem('jwt');
+let localTokenJwt = localStorage.getItem('jwt');
+
+
+// Função para validação do local do token
+const tokenAtual = () => {
+    if (localTokenJwt) {
+        return localTokenJwt;
+    } else if (tokenJwt) {
+        return tokenJwt;
+    } else {
+        return null;
+    }
+}
+
 // Função para retirada de espaços de um determinado valor informado
 function retiraEspacosDeUmValorInformado (recebeValor) {
     return recebeValor.trim();
@@ -29,4 +68,40 @@ function constroiMensagemInformativa(mensagemInformativa, campoDeExibicao) {
 // Função para limpar mensagem de erro
 function limpaMensagemDeErro(campoDeExibicao) {
     campoDeExibicao.innerText = "";
+}
+
+// Função unificada para a validação dos campos de cadastro e/ou login
+function validarCampo(campo) {
+	if (campo == campoNome) {
+		const nameHasOnlyString = !/\d/g.test(campoNome.value);
+		const maxLength = 20;
+		const minLength = 2;
+		const isNameValid = nameHasOnlyString && campoNome.value.length <= maxLength && campoNome.value.length >= minLength;
+		return isNameValid
+	}
+	else if (campo == campoSobrenome) {
+		const surnameHasOnlyString = !/\d/g.test(campoSobrenome.value);
+		const maxLength = 30;
+		const minLength = 2;
+		const isSurnameValid = surnameHasOnlyString && campoSobrenome.value.length <= maxLength && campoSobrenome.value.length >= minLength;
+		return isSurnameValid
+	}
+	else if (campo == campoEmail) {
+		const emailValue = campoEmail.value;
+		const emailRegExValidateString = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(emailValue);
+		const isEmailValid = emailRegExValidateString;
+		return isEmailValid;
+	}
+	else if (campo == campoSenha) {
+		const minLength = 8;
+		const maxLength = 16;
+		const passwordValue = campoSenha.value;
+		const isPasswordValid = passwordValue.length >= minLength && passwordValue.length <= maxLength;
+		return isPasswordValid;
+	}
+	else if (campo == campoConfirmaSenha) {
+		const isBothPasswordsEqual = campoSenha.value === campoConfirmaSenha.value;
+		return isBothPasswordsEqual;
+	}
+
 }
