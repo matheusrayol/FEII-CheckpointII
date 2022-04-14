@@ -1,18 +1,3 @@
-// Captura dos campos necessários para as validações de cadastro
-const campoNome = document.getElementById('name-input');
-const campoNomeMensagem = document.getElementById('name-input-message');
-const campoSobrenome = document.getElementById('surname-input');
-const campoSobrenomeMensagem = document.getElementById('surname-input-message');
-const campoEmail = document.getElementById('email-input');
-const campoEmailMensagem = document.getElementById('email-input-message');
-const campoSenha = document.getElementById('password-input');
-const campoSenhaMensagem = document.getElementById('password-input-message');
-const campoConfirmaSenha = document.getElementById('password-confirm-input');
-const campoConfirmaSenhaMensagem = document.getElementById('password-confirm-input-message');
-const botaoCadastro = document.getElementById('submit-button');
-const statusCadastroMensagem = document.getElementById('signup-status-message');
-const formularioCadastro = document.querySelector('form');
-
 // Criação do objeto que receberá as informações de cadastro para envio
 const cadastroUsuarioObjeto = {
 	firstName: '',
@@ -24,7 +9,7 @@ const cadastroUsuarioObjeto = {
 // Event Listener - Campo de Nome
 campoNome.addEventListener('input', () => { 
   // Verifica se o campo Nome foi preenchido corretamente.
-	if (validateName()) {
+  if (validarCampo(campoNome)) {
 		campoNome.style.border = "3px solid #5369f8";
 		limpaMensagemDeErro(campoNomeMensagem);
 	} else if (campoNome.value == "") {
@@ -39,7 +24,7 @@ campoNome.addEventListener('input', () => {
 // Event Listener - Campo de Sobrenome
 campoSobrenome.addEventListener('input', () => {
   // Verifica se o campo Nome foi preenchido corretamente.
-	if (validateSurname()) {
+  if (validarCampo(campoSobrenome)) {
 		campoSobrenome.style.border = "3px solid #5369f8";
 		limpaMensagemDeErro(campoSobrenomeMensagem);
 	} else if (campoSobrenome.value == "") {
@@ -54,7 +39,7 @@ campoSobrenome.addEventListener('input', () => {
 // Event Listener - Campo de Email
 campoEmail.addEventListener('input', () => {
   // Verifica se o campo Email foi preenchido corretamente.
-	if (validateEmail()) {
+  if (validarCampo(campoEmail)) {
 		campoEmail.style.border = "3px solid #5369f8";
 		limpaMensagemDeErro(campoEmailMensagem);
 	} else if (campoEmail.value == "") {
@@ -69,7 +54,7 @@ campoEmail.addEventListener('input', () => {
 // Event Listener - Campo de Senha
 campoSenha.addEventListener('input', () => {
   // Verifica se o campo Senha foi preenchido corretamente.
-	if (validatePassword()) {
+  if (validarCampo(campoSenha)) {
 		campoSenha.style.border = "3px solid #5369f8";
 		limpaMensagemDeErro(campoSenhaMensagem);
 	} else if (campoSenha.value == "") {
@@ -84,7 +69,7 @@ campoSenha.addEventListener('input', () => {
 // Event Listener - Campo de Confirmação de Senha
 campoConfirmaSenha.addEventListener('input', () => {
   // Verifica se o campo Confirmação de Senha corresponde ao conteúdo do campo Senha.
-	if (validatePasswordConfirmation()) {
+  if (validarCampo(campoConfirmaSenha)) {
 		campoConfirmaSenha.style.border = "3px solid #5369f8";
 		limpaMensagemDeErro(campoConfirmaSenhaMensagem);
 	} else if (campoConfirmaSenha.value == "") {
@@ -101,13 +86,13 @@ botaoCadastro.addEventListener('click', (event) => {
 	event.preventDefault();
   // Verifica se todos os campos foram preenchidos corretamente.
 	if (validarCadastro()) {
-    // REFATORAÇÃO: Exibe em console o resultado das validações. 
-	// Acho que podemos remover as instâncias de console.log de todos os códigos quando terminarmos o desenvolvimento.
-		console.log('validateName: ' + validateName());
-		console.log('validateSurname: ' + validateSurname());
-		console.log('validateEmail: ' + validateEmail());
-		console.log('validatePassword: ' + validatePassword());
-		console.log('validatePasswordConfirmation: ' + validatePasswordConfirmation());
+    	// REFATORAÇÃO: Exibe em console o resultado das validações. 
+		// Acho que podemos remover as instâncias de console.log de todos os códigos quando terminarmos o desenvolvimento.
+		console.log('validateName: ' + validarCampo(campoNome));
+		console.log('validateSurname: ' + validarCampo(campoSobrenome));
+		console.log('validateEmail: ' + validarCampo(campoEmail));
+		console.log('validatePassword: ' + validarCampo(campoSenha));
+		console.log('validatePasswordConfirmation: ' + validarCampo(campoConfirmaSenha));
 
 		// Atribui os valores dos campos de cadastro ao objeto de cadastro.
 		cadastroUsuarioObjeto.firstName = campoNome.value;
@@ -187,60 +172,52 @@ function erroNoCadastro(statusRecebido) {
 	validarCadastro();
 }
 
-// Validação do campo Nome
-// REFATORAÇÃO: Acho que podemos unificar todas as validações em uma única função que receba o campo como parâmetro, 
-// então criamos uma condicional (ou um switch case) de acordo com o parâmetro que foi inserido.
-const validateName = () => {
-	const nameHasOnlyString = !/\d/g.test(campoNome.value);
-	const maxLength = 20;
-	const minLength = 2;
 
-	const isNameValid = nameHasOnlyString && campoNome.value.length <= maxLength && campoNome.value.length >= minLength;
 
-	return isNameValid
-}
+// // Validação do campo Nome
+// const validateName = () => {
+// 	const nameHasOnlyString = !/\d/g.test(campoNome.value);
+// 	const maxLength = 20;
+// 	const minLength = 2;
+// 	const isNameValid = nameHasOnlyString && campoNome.value.length <= maxLength && campoNome.value.length >= minLength;
+// 	return isNameValid
+// }
 
-// Validação do campo Sobrenome
-const validateSurname = () => {
-	const surnameHasOnlyString = !/\d/g.test(campoSobrenome.value);
-	const maxLength = 30;
-	const minLength = 2;
+// // Validação do campo Sobrenome
+// const validateSurname = () => {
+// 	const surnameHasOnlyString = !/\d/g.test(campoSobrenome.value);
+// 	const maxLength = 30;
+// 	const minLength = 2;
+// 	const isSurnameValid = surnameHasOnlyString && campoSobrenome.value.length <= maxLength && campoSobrenome.value.length >= minLength;
+// 	return isSurnameValid
+// }
 
-	const isSurnameValid = surnameHasOnlyString && campoSobrenome.value.length <= maxLength && campoSobrenome.value.length >= minLength;
+// // Validação do campo E-mail
+// const validateEmail = () => {
+// 	const emailValue = campoEmail.value;
+// 	const emailRegExValidateString = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(emailValue);
+// 	const isEmailValid = emailRegExValidateString;
+// 	return isEmailValid;
+// }
 
-	return isSurnameValid
-}
+// // Validação do campo de Senha
+// const validatePassword = () => {
+// 	const minLength = 8;
+// 	const maxLength = 16;
+// 	const passwordValue = campoSenha.value;
+// 	const isPasswordValid = passwordValue.length >= minLength && passwordValue.length <= maxLength;
+// 	return isPasswordValid;
+// }
 
-// Validação do campo E-mail
-const validateEmail = () => {
-	const emailValue = campoEmail.value;
-	const emailRegExValidateString = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(emailValue);
-	const isEmailValid = emailRegExValidateString;
-
-	return isEmailValid;
-}
-
-// Validação do campo de Senha
-const validatePassword = () => {
-	const minLength = 8;
-	const maxLength = 16;
-	const passwordValue = campoSenha.value;
-
-	const isPasswordValid = passwordValue.length >= minLength && passwordValue.length <= maxLength;
-
-	return isPasswordValid;
-}
-
-// Validação dos campos de Senha
-const validatePasswordConfirmation = () => {
-	const isBothPasswordsEqual = campoSenha.value === campoConfirmaSenha.value;
-
-	return isBothPasswordsEqual;
-}
+// // Validação dos campos de Senha
+// const validatePasswordConfirmation = () => {
+// 	const isBothPasswordsEqual = campoSenha.value === campoConfirmaSenha.value;
+// 	return isBothPasswordsEqual;
+// }
 
 // Validação dos campos de cadastro
 const validarCadastro = () => {
-	if (validateName() && validateSurname() && validateEmail() && validatePassword() && validatePasswordConfirmation()) {
+	if (validarCampo(campoNome) && validarCampo(campoSobrenome) && validarCampo(campoEmail) && validarCampo(campoSenha) && validarCampo(campoConfirmaSenha)) {
 		return true;
 	} else {
 		return false;

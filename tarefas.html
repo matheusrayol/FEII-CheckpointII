@@ -38,8 +38,8 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 
     <!-- Scripts do To-Do -->
-    <script defer src="assets/scripts/tarefas/tarefas.js"></script>
     <script defer src="assets/scripts/validacoes/utils.js"></script>
+    <script defer src="assets/scripts/tarefas/tarefas.js"></script>
 </head>
 
 <body>
@@ -55,43 +55,16 @@
         </header>
         <div id="main-area" class="container pt-4">
             <form class="nova-tarefa">
-                <div class="input-group"><input class="form-control" type="text" id="nova-tarefa" placeholder="Nova tarefa" maxlength="140" minlength="1"><span class="input-group-text contador" id="character-count">140</span></div><a class="task-button" href="#"><i class="fas fa-plus"></i></a>
+                <div class="input-group"><input class="form-control" type="text" id="nova-tarefa" placeholder="Nova tarefa" maxlength="140" minlength="1"><span class="input-group-text contador" id="character-count">140</span></div><a id="adicionar-tarefa" class="task-button" href="#"><i class="fas fa-plus"></i></a>
             </form>
             <div id="skeletonk">
                 <ul class="tarefas-pendentes">
                     <li class="tarefa">
                         <div class="not-done"><i class="fas fa-check"></i></div>
                         <div class="descricao gap-3">
-                            <p class="nome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed dignissim libero, vitae imperdiet lacus. Pellentesque habitant morbi tr</p>
-                            <div class="timestamp">
-                                <p class="text-center mb-0">Criada em:</p>
-                                <p class="text-center mb-0">15/07/21</p>
+                            <div hidden="true">
+                                <p class="text-muted">ID</p>
                             </div>
-                        </div>
-                    </li>
-                    <li class="tarefa">
-                        <div class="not-done"><i class="fas fa-check"></i></div>
-                        <div class="descricao gap-3">
-                            <p class="nome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed dignissim libero, vitae imperdiet lacus. Pellentesque habitant morbi tr</p>
-                            <div class="timestamp">
-                                <p class="text-center mb-0">Criada em:</p>
-                                <p class="text-center mb-0">15/07/21</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="tarefa">
-                        <div class="not-done"><i class="fas fa-check"></i></div>
-                        <div class="descricao gap-3">
-                            <p class="nome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed dignissim libero, vitae imperdiet lacus. Pellentesque habitant morbi tr</p>
-                            <div class="timestamp">
-                                <p class="text-center mb-0">Criada em:</p>
-                                <p class="text-center mb-0">15/07/21</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="tarefa">
-                        <div class="not-done"><i class="fas fa-check"></i></div>
-                        <div class="descricao gap-3">
                             <p class="nome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed dignissim libero, vitae imperdiet lacus. Pellentesque habitant morbi tr</p>
                             <div class="timestamp">
                                 <p class="text-center mb-0">Criada em:</p>
@@ -103,7 +76,22 @@
             </div>
             <div class="d-flex flex-column align-items-center" id="completed-tasks">
                 <h2 class="titulo-terminadas">Tarefas terminadas</h2>
-                <ul class="tarefas-terminadas"></ul>
+                <ul class="tarefas-pendentes">
+                    <li class="tarefa">
+                        <div class="done"><i class="fas fa-times"></i></div>
+                        <div class="descricao gap-3">
+                            <div hidden="true">
+                                <p class="text-muted">ID</p>
+                            </div>
+                            <p class="nome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed dignissim libero, vitae imperdiet lacus. Pellentesque habitant morbi tr</p>
+                            <div class="timestamp">
+                                <p class="text-center mb-0">Criada em:</p>
+                                <p class="text-center mb-0">15/07/21</p>
+                            </div>
+                            <div class="text-center mt-2"><a href="#"><i class="fas fa-trash task-button"></i></a></div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
