@@ -58,7 +58,7 @@
                 <div class="input-group"><input class="form-control" type="text" id="nova-tarefa" placeholder="Nova tarefa" maxlength="140" minlength="1"><span class="input-group-text contador" id="character-count">140</span></div><a id="adicionar-tarefa" class="task-button" href="#"><i class="fas fa-plus"></i></a>
             </form>
             <div id="skeletonk">
-                <ul class="tarefas-pendentes">
+                <ul id="tarefas-pendentes" class="tarefas-pendentes">
                     <li class="tarefa">
                         <div class="not-done"><i class="fas fa-check"></i></div>
                         <div class="descricao gap-3">
@@ -76,7 +76,7 @@
             </div>
             <div class="d-flex flex-column align-items-center" id="completed-tasks">
                 <h2 class="titulo-terminadas">Tarefas terminadas</h2>
-                <ul class="tarefas-pendentes">
+                <ul id="tarefas-terminadas" class="tarefas-terminadas">
                     <li class="tarefa">
                         <div class="done"><i class="fas fa-times"></i></div>
                         <div class="descricao gap-3">
