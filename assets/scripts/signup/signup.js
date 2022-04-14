@@ -149,7 +149,7 @@ function sucessoNoCadastro(tokenRecebido) {
 	// Exibe no console a resposta recebida da API de login
 	console.log(`JSON Recebido: ${tokenRecebido}`);
 	// Altera a mensagem de erro para informar que o login foi bem-sucedido
-	constroiMensagemInformativa("Redirecionando...", statusCadastroMensagem);
+	constroiMensagemInformativa("Cadastro concluído! Redirecionando...", statusCadastroMensagem);
 
 	setTimeout(() => {location.href = "index.html";}, 1500);	
 }
