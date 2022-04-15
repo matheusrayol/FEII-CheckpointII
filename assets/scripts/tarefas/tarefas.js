@@ -9,6 +9,7 @@ let botaoNovaTarefa = document.getElementById('adicionar-tarefa');
 let tarefasPendentes = document.getElementById('tarefas-pendentes');
 let tarefasConcluidas = document.getElementById('tarefas-concluidas');
 
+
 onload = function () {
     // Verifica se o token está presente no localStorage
     if (tokenAtual()) {
@@ -29,3 +30,12 @@ onload = function () {
 campoNovaTarefa.onkeyup = function () {
     contarCaracteres.innerHTML = 140 - this.value.length;
 };
+
+botaoSair.addEventListener('click', () =>
+    {
+        sessionStorage.removeItem('jwt');
+        localStorage.removeItem('jwt');
+
+        location.href = 'index.html';
+    });
+
