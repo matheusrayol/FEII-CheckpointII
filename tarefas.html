@@ -54,8 +54,11 @@
             </div>
         </header>
         <div id="main-area" class="container pt-4">
-            <form class="nova-tarefa">
-                <div class="input-group"><input class="form-control" type="text" id="nova-tarefa" placeholder="Nova tarefa" maxlength="140" minlength="1"><span class="input-group-text contador" id="character-count">140</span></div><a id="adicionar-tarefa" class="task-button" href="#"><i class="fas fa-plus"></i></a>
+            <form class="d-flex flex-column nova-tarefa">
+                <div class="d-flex flex-row col-12">
+                    <div class="input-group"><input class="form-control" type="text" id="nova-tarefa" placeholder="Nova tarefa" maxlength="140" minlength="1"><span class="d-none d-sm-flex input-group-text contador" id="character-count">140</span></div><a id="adicionar-tarefa" class="task-button" href="#"><button class="btn btn-tarefas" type="button"><i class="fas fa-plus" data-bs-toggle="tooltip" data-bss-tooltip=""></i></button></a>
+                </div>
+                <div><span id="adicionar-tarefa-mensagem"></span></div>
             </form>
             <div id="skeletonk">
                 <ul id="tarefas-pendentes" class="tarefas-pendentes">
@@ -65,7 +68,7 @@
                             <div hidden="true">
                                 <p class="text-muted">ID</p>
                             </div>
-                            <p class="nome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed dignissim libero, vitae imperdiet lacus. Pellentesque habitant morbi tr</p>
+                            <p class="nome">Este é um card de exemplo da lista de tarefas pendentes. Ele será removido ao final do projeto, dando lugar para as tarefas buscadas pela API.</p>
                             <div class="timestamp">
                                 <p class="text-center mb-0">Criada em:</p>
                                 <p class="text-center mb-0">15/07/21</p>
@@ -82,7 +85,7 @@
                             <div hidden="true">
                                 <p class="text-muted">ID</p>
                             </div>
-                            <p class="nome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed dignissim libero, vitae imperdiet lacus. Pellentesque habitant morbi tr</p>
+                            <p class="nome">Este é um card de exemplo da lista de tarefas concluídas. Ele será removido ao final do projeto, dando lugar para as tarefas buscadas pela API.<br></p>
                             <div class="timestamp">
                                 <p class="text-center mb-0">Criada em:</p>
                                 <p class="text-center mb-0">15/07/21</p>
