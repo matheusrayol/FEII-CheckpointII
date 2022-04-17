@@ -2,21 +2,22 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>App To-Do | Tarefas</title>
 
-    <!-- SEO / Opengraph / Twitter Share -->
+    <!-- SEO / Opengraph -->
     <meta name="theme-color" content="#19204d ">
-    <meta name="twitter:image" content="assets/img/todoapp_opengraph.png">
     <meta name="description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="og:image" content="assets/img/todoapp_opengraph.png">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="App To-Do: Organize suas tarefas">
-    <meta property="og:description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
-    <meta name="twitter:description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="assets/img/todoapp_opengraph.png">
+	
+	<!-- Twitter Share -->
+    <meta name="twitter:title" content="App To-Do: Organize suas tarefas">
+	<meta name="twitter:image" content="assets/img/todoapp_opengraph.png">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="512x512" href="assets/img/todoapp_favicon.png">
@@ -34,7 +35,7 @@
     <!-- Folha de estilos do App To-Do -->
     <link rel="stylesheet" href="assets/styles/apptodo.css">
 
-    <!-- Folha de estilos do Template: aos -->
+    <!-- Folha de estilos do Template: AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 
     <!-- Scripts do To-Do -->
@@ -43,32 +44,50 @@
 </head>
 
 <body>
-    <!-- Área logada do site -->
+
+    <!-- Start: Área logada do site -->
     <div id="area-logada" hidden="true">
+	
+        <!-- Start: Cabeçalho -->
         <header class="navegacao-tarefas sticky-top">
-            <nav class="my-auto"><a href="index.html"><img src="assets/img/todoapp_logo.png" alt="To-Do: Organize suas tarefas" width="50px" height="50px"></a></nav>
+            <nav class="my-auto">
+				<a href="index.html">
+					<img src="assets/img/todoapp_logo.png" alt="To-Do: Organize suas tarefas" width="50px" height="50px">
+				</a>
+			</nav>
             <div id="user-info" class="d-flex align-items-center user-info">
                 <p class="my-auto" id="user-name">Usuário</p>
                 <div id="user-picture" class="user-image"></div>
                 <p class="my-auto encerrar-sessao" id="encerrar-sessao">Sair</p>
             </div>
         </header>
+		<!-- End: Cabeçalho -->
+		
+        <!-- Start: Interface de criação e exibição de tarefas -->
         <div id="main-area" class="container pt-4">
             <form class="d-flex flex-column nova-tarefa">
                 <div class="d-flex flex-row col-12">
-                    <div class="input-group"><input class="form-control" type="text" id="nova-tarefa" placeholder="Nova tarefa" maxlength="140" minlength="1"><span class="d-none d-sm-flex input-group-text contador" id="character-count">140</span></div><a id="adicionar-tarefa" class="task-button" href="#"><button class="btn btn-tarefas" type="button"><i class="fas fa-plus" data-bs-toggle="tooltip" data-bss-tooltip=""></i></button></a>
+                    <div class="input-group">
+						<input class="form-control" type="text" id="nova-tarefa" placeholder="Nova tarefa" maxlength="140" minlength="1">
+						<span class="d-none d-sm-flex input-group-text contador" id="character-count">140</span>
+					</div>
+					<button class="btn btn-tarefas" id="adicionar-tarefa" type="button">
+						<i class="fas fa-plus" data-bs-toggle="tooltip" data-bss-tooltip=""></i>
+					</button>
                 </div>
                 <div><span id="adicionar-tarefa-mensagem"></span></div>
             </form>
-            <div id="skeletonk">
+            <div id="skeletond">
                 <ul id="tarefas-pendentes" class="tarefas-pendentes">
                     <li class="tarefa">
-                        <div class="not-done"><i class="fas fa-check"></i></div>
+                        <div class="not-done" onclick="editarTarefa()">
+							<i class="fas fa-check"></i>
+						</div>
                         <div class="descricao gap-3">
                             <div hidden="true">
                                 <p class="text-muted">ID</p>
                             </div>
-                            <p class="nome">Este é um card de exemplo da lista de tarefas pendentes. Ele será removido ao final do projeto, dando lugar para as tarefas buscadas pela API.</p>
+                            <p class="descricao-tarefa">Este é um card de exemplo da lista de tarefas pendentes. Ele será removido ao final do projeto, dando lugar para as tarefas buscadas pela API.</p>
                             <div class="timestamp">
                                 <p class="text-center mb-0">Criada em:</p>
                                 <p class="text-center mb-0">15/07/21</p>
@@ -77,28 +96,40 @@
                     </li>
                 </ul>
             </div>
-            <div class="d-flex flex-column align-items-center" id="completed-tasks">
+            <div class="d-flex flex-column align-items-center">
                 <h2 class="titulo-terminadas">Tarefas terminadas</h2>
-                <ul id="tarefas-terminadas" class="tarefas-terminadas">
-                    <li class="tarefa">
-                        <div class="descricao gap-3">
-                            <div hidden="true">
-                                <p class="text-muted">ID</p>
+                <div id="skeletond">
+                    <ul id="tarefas-terminadas" class="tarefas-terminadas">
+                        <li class="tarefa">
+                            <div class="descricao gap-3">
+                                <div hidden="true">
+                                    <p class="text-muted">ID</p>
+                                </div>
+                                <p class="descricao-tarefa">Este é um card de exemplo da lista de tarefas concluídas. Ele será removido ao final do projeto, dando lugar para as tarefas buscadas pela API.<br></p>
+                                <div class="timestamp">
+                                    <p class="text-center mb-0">Criada em:</p>
+                                    <p class="text-center mb-0">15/07/21</p>
+                                </div>
+                                <div class="text-center d-md-flex mt-3 mt-md-0">
+									<button class="btn btn-tarefas mx-1" type="button" onclick="editarTarefa();">
+										<i class="fas fa-undo-alt"></i>
+									</button>
+									<button class="btn btn-tarefas mx-1" type="button" onclick="excluirTarefa()">
+										<i class="fas fa-trash"></i>
+									</button>
+								</div>
                             </div>
-                            <p class="nome">Este é um card de exemplo da lista de tarefas concluídas. Ele será removido ao final do projeto, dando lugar para as tarefas buscadas pela API.<br></p>
-                            <div class="timestamp">
-                                <p class="text-center mb-0">Criada em:</p>
-                                <p class="text-center mb-0">15/07/21</p>
-                            </div>
-                            <div class="text-center d-md-flex mt-3 mt-md-0"><a class="task-button excluir-tarefa" href="#"><button class="btn btn-tarefas mx-1" type="button"><i class="fas fa-undo-alt"></i></button></a><a class="task-button excluir-tarefa" href="#"><button class="btn btn-tarefas mx-1" type="button"><i class="fas fa-trash"></i></button></a></div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+		<!-- End: Interface de criação e exibição de tarefas -->
+		
     </div>
-
-    <!-- Área de alerta do site -->
+	<!-- End: Área logada do site -->
+	
+    <!-- Start: Área de alerta (erro no login) -->
     <div id="area-alerta" hidden="true">
         <section id="login-screen" class="centered-form">
             <div class="container" id="login-wrapper">
@@ -130,6 +161,7 @@
             </div>
         </section>
     </div>
+	<!-- End: Área de alerta (erro no login) -->
 
     <!-- Script do Bootstrap 5.1 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

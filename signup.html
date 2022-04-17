@@ -2,21 +2,22 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>App To-Do | Cadastre-se</title>
 
-    <!-- SEO / Opengraph / Twitter Share -->
+    <!-- SEO / Opengraph -->
     <meta name="theme-color" content="#19204d ">
-    <meta name="twitter:image" content="assets/img/todoapp_opengraph.png">
     <meta name="description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="og:image" content="assets/img/todoapp_opengraph.png">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="App To-Do: Organize suas tarefas">
-    <meta property="og:description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
-    <meta name="twitter:description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="assets/img/todoapp_opengraph.png">
+	
+	<!-- Twitter Share -->
+    <meta name="twitter:title" content="App To-Do: Organize suas tarefas">
+	<meta name="twitter:image" content="assets/img/todoapp_opengraph.png">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="512x512" href="assets/img/todoapp_favicon.png">
@@ -36,7 +37,8 @@
 </head>
 
 <body>
-    <!-- Seção principal: Área de cadastro -->
+
+    <!-- Start: Seção principal: Área de cadastro -->
     <section id="signup-screen" class="centered-form">
         <div class="container" id="signup-wrapper">
             <div class="row justify-content-center">
@@ -44,7 +46,8 @@
                     <div class="card border-0">
                         <div class="card-body p-0">
                             <div class="row g-0">
-                                <!-- Coluna Formulário -->
+							
+                                <!-- Start: Coluna Formulário de Cadastro -->
                                 <div class="col-lg-6">
                                     <div class="p-5">
                                         <div class="mb-4">
@@ -70,10 +73,14 @@
                                         </form>
                                     </div>
                                 </div>
-                                <!-- Coluna Imagem -->
+								<!-- End: Coluna Formulário de Cadastro -->
+								
+                                <!-- Start: Coluna da Imagem de destaque -->
                                 <div class="col-lg-6 d-none d-lg-inline-block">
                                     <div class="splash-block signup"></div>
                                 </div>
+								<!-- End: Coluna da Imagem de destaque -->
+								
                             </div>
                         </div>
                     </div>
@@ -81,7 +88,8 @@
             </div>
         </div>
     </section>
-
+	<!-- End: Seção principal: Área de cadastro -->
+	
     <!-- Script do Bootstrap 5.1 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 

@@ -1,5 +1,14 @@
-/* Regras globais - Espaçamentos, fontes e cores */
+/* Animação do skeleton */
+@keyframes transparencia {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
 
+/* Raiz do documento */
 :root {
   --gutter-x: 1.5rem;
   --gutter-y: 0;
@@ -9,65 +18,57 @@
   --cor-fundo: #fff !important;
   --cor-destaque: #5369f8 !important;
   --cor-destaque-hover: #2743f5 !important;
-  --cor-background: #19204d !important;
+  --cor-background: #CBD2FD !important;
   --cor-borda-input: #ccc !important;
   --cor-texto-input: #333 !important;
 }
 
-/* Aplicado Globalmente */
-
+/* Regras globais */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  padding-inline-start: 0;
 }
 
-/* Altera o comportamento do scrolling */
-
+/* Alteração do comportamento do scrolling */
 html {
   scroll-behavior: smooth;
 }
 
 /* Definição de fonte padrão para o corpo do site, cor padrão e fundo padrão */
-
 body {
   font-family: var(--fonte-ubuntu);
   color: var(--cor-fonte);
   background-color: var(--cor-background);
 }
 
-/* Definição da cor padrão dos links */
-
+/* Cor padrão dos links */
 a {
   color: var(--cor-destaque);
   text-decoration: none;
 }
 
+/* Cor padrão dos links: hover */
 a:hover {
   color: var(--cor-destaque-hover);
 }
 
+/* Cor padrão dos links: focus */
 a:focus {
   color: var(--cor-destaque-hover);
 }
 
 /* Ignora o padding para listas ordenadas e desordenadas */
-
 ol, ul {
   padding-left: 0;
 }
 
-/* Estilização dos containers para que a alternância de
-tamanho nos breakpoints seja suave */
+/* Efeito de transição para os breakpoints dos containers */
 .container {
   transition: max-width .25s linear;
 }
 
-/* Estilização da área principal do site,
-centralizando os componentes internos para melhor
-visualização, e definindo o espaçamento */
-
+/* Centralização da área de login/cadastro do site */
 .centered-form {
   padding: 50px 0;
   height: 100vh;
@@ -75,17 +76,15 @@ visualização, e definindo o espaçamento */
   display: flex;
 }
 
-/* Define a cor e a fonte para textos em destaque, como títulos */
-
+/* Definição da cor e fonte para textos em destaque */
 .text-theme {
   font-family: var(--fonte-poppins);
   color: var(--cor-destaque);
 }
 
-/* Estilo padrão para botões utilizados no projeto */
-
+/* Estilo padrão para botões de login/cadastro do projeto */
 .btn-apptodo {
-  color: white;
+  color: var(--cor-fundo);
   background-color: var(--cor-destaque);
   display: inline-block;
   font-weight: 400;
@@ -101,13 +100,12 @@ visualização, e definindo o espaçamento */
   transition: background-color .5s ease-in-out;
 }
 
+/* Efeito hover dos botões de login/cadastro do projeto */
 .btn-apptodo:hover {
-  color: white;
   background-color: var(--cor-destaque-hover);
 }
 
-/* Configuração do bloco de exibição das imagens nas páginas de login, cadastro, e de erro */
-
+/* Bloco de exibição das imagens de login, cadastro e erro */
 .splash-block {
   position: relative;
   background-repeat: no-repeat;
@@ -117,50 +115,42 @@ visualização, e definindo o espaçamento */
 }
 
 /* Imagem da página de erro */
-
 .splash-block.blocked {
   background-image: url("../../assets/img/acesso_proibido.svg");
 }
 
 /* Imagem da página de login */
-
 .splash-block.login {
   background-image: url("../../assets/img/login_form.svg");
 }
 
 /* Imagem da página de cadastro */
-
 .splash-block.signup {
   background-image: url("../../assets/img/signup_form.svg");
 }
 
-/* Configuração de estilização de fundo dos
-cards de login, cadastro e erro */
-
+/* Estilização de fundo dos cards de login, cadastro e erro */
 .card {
   background-color: var(--cor-fundo);
 }
 
 /* Estilização de formulários */
-
 .form-control {
   border: 3px solid var(--cor-borda-input);
   background-color: var(--cor-fundo);
   color: var(--cor-fonte);
 }
 
+/* Campos do formulário quando em foco */
 .form-control:focus {
   color: var(--cor-fonte);
   background-color: var(--cor-fundo);
-  border-color: var(--cor-borda-input);
+  border-color: var(--cor-destaque);
   outline: 0;
-  box-shadow: 0 0 0 0.25rem var(--cor-destaque);
+  box-shadow: none;
 }
 
-/* --------------- Área Logada --------------- */
-
 /* Barra de navegação */
-
 .navegacao-tarefas {
   height: 70px;
   display: flex;
@@ -169,14 +159,11 @@ cards de login, cadastro e erro */
 }
 
 /* Área de informações do usuário */
-
 .user-info {
   margin-left: auto;
-  color: white;
 }
 
 /* Imagem de perfil do usuário */
-
 .user-image {
   height: 2em;
   width: 2em;
@@ -186,7 +173,6 @@ cards de login, cadastro e erro */
 }
 
 /* Botão para encerrar a sessão */
-
 .encerrar-sessao {
   margin-left: 15px;
   font-size: .8rem;
@@ -199,7 +185,6 @@ cards de login, cadastro e erro */
 }
 
 /* Área para criação de nova tarefa */
-
 .nova-tarefa {
   position: relative;
   display: flex;
@@ -212,20 +197,7 @@ cards de login, cadastro e erro */
   z-index: 20;
 }
 
-@media (min-width: 300px) {
-  .nova-tarefa {
-    width: 100%;
-    margin: 0;
-  }
-}
-
-@media (min-width: 576px) {
-  .nova-tarefa {
-    width: 100%;
-    margin: 0;
-  }
-}
-
+/* Campo de texto de nova tarefa */
 .nova-tarefa input[type=text] {
   flex: 1;
   border-radius: .5rem !important;
@@ -233,11 +205,13 @@ cards de login, cadastro e erro */
   font-size: 1.1em;
 }
 
+/* Estilização do placeholder do campo de nova tarefa */
 .nova-tarefa input::placeholder {
   color: var(--cor-texto-input);
   text-indent: .2em;
 }
 
+/* Contador de caracteres do campo de nova tarefa */
 .contador {
   color: var(--cor-fonte);
   background-color: var(--cor-fundo);
@@ -245,6 +219,7 @@ cards de login, cadastro e erro */
   border: var(--cor-fundo);
 }
 
+/* Start: Skeleton para mascarar as tarefas enquanto são carregadas */
 #skeleton {
   animation: transparencia 1s infinite;
 }
@@ -253,46 +228,41 @@ cards de login, cadastro e erro */
   position: relative;
   height: 1.8rem;
   width: 1.8rem;
-  background-color: grey;
-  border: 2px solid grey;
+  background-color: var(--cor-fundo);
+  border: 2px solid var(--cor-fundo);
   color: var(--cor-fundo);
   z-index: 2;
   transition: all 200ms linear;
 }
 
-#skeleton .descricao, #skeleton .fas.fa-check {
-  background-color: grey !important;
-  color: grey !important;
+#skeleton .descricao {
+  background-color: var(--cor-fundo);
+  color: var(--cor-borda-input);
+}
+
+#skeleton .fas.fa-check {
+  background-color: var(--cor-fundo) !important;
+  color: var(--cor-fundo) !important;
+}
+
+#skeleton button {
+  background-color: var(--cor-fundo) !important;
+  color: var(--cor-borda-input) !important;
 }
 
 #skeleton p {
-  background-color: lightgrey !important;
-  color: lightgrey !important;
+  background-color: var(--cor-borda-input);
+  color: var(--cor-borda-input);
 }
+/* End: Skeleton para mascarar as tarefas enquanto são carregadas */
 
+/* Start: Estilização de tarefas pendentes e concluídas */
 .tarefas-pendentes {
   display: flex;
   flex-direction: column;
   width: 70%;
   list-style: none;
   margin: 1.5rem 15%;
-}
-
-@media (min-width: 300px) {
-  .tarefas-pendentes {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    list-style: none;
-    margin: 1.5rem 0;
-  }
-}
-
-@media (min-width: 576px) {
-  .tarefas-pendentes {
-    width: 90%;
-    margin: 1.5rem 5%;
-  }
 }
 
 .tarefa {
@@ -306,7 +276,7 @@ cards de login, cadastro e erro */
   height: 1.8rem;
   width: 1.8rem;
   background-color: var(--cor-fundo);
-  border: 2px solid var(--cor-fundo);
+  border: 2px solid var(--cor-destaque);
   color: var(--cor-fundo);
   z-index: 2;
   transition: all 200ms linear;
@@ -314,7 +284,6 @@ cards de login, cadastro e erro */
 
 .tarefa .not-done:hover {
   background-color: var(--cor-destaque-hover);
-  color: white;
 }
 
 .tarefa .descricao {
@@ -327,12 +296,6 @@ cards de login, cadastro e erro */
   border-radius: .5rem;
 }
 
-@media (max-width: 576px) {
-  .tarefa .descricao {
-    display: block;
-  }
-}
-
 .tarefa .nome {
   color: var(--cor-texto);
   text-align: justify;
@@ -343,16 +306,6 @@ cards de login, cadastro e erro */
   display: flex !important;
   flex-direction: column;
   white-space: nowrap;
-}
-
-@media (max-width: 576px) {
-  .tarefa .timestamp {
-    display: flex !important;
-    flex-direction: row;
-    justify-content: center;
-    column-gap: .2rem;
-    margin-top: 1rem;
-  }
 }
 
 .not-done, .done {
@@ -378,12 +331,6 @@ cards de login, cadastro e erro */
   z-index: 20;
 }
 
-@media (max-width: 768px) {
-  .titulo-terminadas {
-    width: 100%;
-  }
-}
-
 .tarefas-terminadas {
   display: flex;
   flex-direction: column;
@@ -392,47 +339,7 @@ cards de login, cadastro e erro */
   margin: 2em 15%;
 }
 
-.tarefas-terminadas i {
-  color: grey;
-  background-color: var(--cor-fundo);
-}
-
-.tarefas-terminadas button {
-  margin-left: 10px;
-}
-
-.tarefas-terminadas .tarefa .descricao {
-  background-color: var(--cor-fundo);
-}
-
-.tarefas-terminadas .tarefa .descricao .nome {
-  color: grey;
-  text-decoration: line-through;
-}
-
-/* Animações */
-
-@keyframes transparencia {
-  0% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0.8;
-  }
-}
-
-/* Ajustes para o Dark Mode automático */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --cor-fonte: lightgrey !important;
-    --cor-fundo: black !important;
-    --cor-texto-input: lightgrey !important;
-    --cor-background: #111640 !important;
-  }
-}
-
-p.nome {
+p.descricao-tarefa {
   margin-bottom: 0;
 }
 
@@ -448,7 +355,7 @@ p.nome {
   background-color: var(--cor-fundo);
   border-color: var(--cor-borda-input);
   outline: 0;
-  box-shadow: 0 0 0 0.25rem var(--cor-destaque);
+  box-shadow: none;
 }
 
 .form-check-input:checked {
@@ -462,9 +369,96 @@ p.nome {
   color: var(--cor-fundo);
   border-radius: .5rem;
   transition: background-color .5s ease-in-out;
+  margin-left: 10px;
 }
 
 .btn-tarefas:hover {
   background-color: var(--cor-destaque-hover);
   color: var(--cor-fundo);
+}
+
+.btn-tarefas:focus {
+  box-shadow: none;
+}
+
+@media (min-width: 300px) {
+  .nova-tarefa {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (min-width: 300px) {
+  .tarefas-pendentes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    margin: 1.5rem 0;
+  }
+}
+
+@media (min-width: 300px) {
+  .tarefas-terminadas {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    margin: 1.5rem 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .nova-tarefa {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .tarefas-pendentes {
+    width: 90%;
+    margin: 1.5rem 5%;
+  }
+}
+
+@media (min-width: 576px) {
+  .tarefas-terminadas {
+    width: 90%;
+    margin: 1.5rem 5%;
+  }
+}
+
+@media (max-width: 576px) {
+  .tarefa .descricao {
+    display: block;
+  }
+}
+
+@media (max-width: 576px) {
+  .tarefa .timestamp {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: .2rem;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .titulo-terminadas {
+    width: 100%;
+  }
+}
+/* End: Estilização de tarefas pendentes e concluídas */
+
+/* Estilização: Modo Escuro automático */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-fonte: lightgrey !important;
+    --cor-fundo: black !important;
+    --cor-texto-input: lightgrey !important;
+    --cor-background: #010525 !important;
+    --cor-borda-input: #2c2e41 !important;
+  }
 }
