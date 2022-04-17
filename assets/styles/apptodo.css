@@ -462,3 +462,83 @@ p.descricao-tarefa {
     --cor-borda-input: #2c2e41 !important;
   }
 }
+
+.modal-github
+{
+  width: 4%;
+  margin-right: 2%;
+  margin-top: 45%;
+  cursor: pointer;
+
+}
+
+#container-modal
+{
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#container-modal.show
+{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#modal-div
+{
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  width: 60%;
+  max-width: 100%;
+  height: 60%;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: var(--fonte-poppins);
+
+}
+
+#modal-participantes
+{
+  display: flex;
+  justify-content:space-around;
+  margin-top: 7%;
+}
+
+#modal-participantes img
+{
+  width: 18%;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+#modal-div h1
+{
+  text-align: center;
+  margin-top: 5%;
+  color: var(--cor-destaque);
+  font-weight: bold;
+}
+
+#close-modal
+{
+  margin-top: 6%;
+  padding: 1% 5%;
+  background-color: var(--cor-destaque);
+  color: white;
+}
+
+#container-botao
+{
+  text-align: center;
+}
