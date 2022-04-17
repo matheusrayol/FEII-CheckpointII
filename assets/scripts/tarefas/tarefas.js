@@ -58,7 +58,7 @@ function exibeNome() {
     }
 
     // Envia a requisição para a API de login
-    fetch(UrlEndpoint, configuracaoDaRequisicao).then(
+    fetch(urlEndpoint, configuracaoDaRequisicao).then(
         // Recebe a resposta da API de login
         resultado => {
             // Verifica o status da resposta
