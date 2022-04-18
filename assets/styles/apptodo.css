@@ -265,6 +265,23 @@ ol, ul {
   margin: 1.5rem 15%;
 }
 
+@media (min-width: 300px) {
+  .tarefas-pendentes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    margin: 1.5rem 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .tarefas-pendentes {
+    width: 90%;
+    margin: 1.5rem 5%;
+  }
+}
+
 .tarefa {
   display: flex;
   align-items: center;
@@ -296,6 +313,12 @@ ol, ul {
   border-radius: .5rem;
 }
 
+@media (max-width: 576px) {
+  .tarefa .descricao {
+    display: block;
+  }
+}
+
 .tarefa .nome {
   color: var(--cor-texto);
   text-align: justify;
@@ -306,6 +329,18 @@ ol, ul {
   display: flex !important;
   flex-direction: column;
   white-space: nowrap;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+}
+
+@media (max-width: 576px) {
+  .tarefa .timestamp {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: .2rem;
+    margin-top: 1rem;
+  }
 }
 
 .not-done, .done {
@@ -320,7 +355,7 @@ ol, ul {
 
 .titulo-terminadas {
   position: relative;
-  width: 50%;
+  width: 100%;
   text-align: center;
   padding: 1rem 1rem;
   background-color: var(--cor-fundo);
@@ -331,12 +366,32 @@ ol, ul {
   z-index: 20;
 }
 
+@media (min-width: 992px) {
+  .titulo-terminadas {
+    width: 50%;
+  }
+}
+
 .tarefas-terminadas {
   display: flex;
   flex-direction: column;
   width: 70%;
   list-style: none;
   margin: 2em 15%;
+}
+
+@media (min-width: 300px) {
+  .tarefas-terminadas {
+    width: 100%;
+    margin: 1.5rem 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .tarefas-terminadas {
+    width: 90%;
+    margin: 1.5rem 0;
+  }
 }
 
 p.descricao-tarefa {
@@ -369,7 +424,6 @@ p.descricao-tarefa {
   color: var(--cor-fundo);
   border-radius: .5rem;
   transition: background-color .5s ease-in-out;
-  margin-left: 10px;
 }
 
 .btn-tarefas:hover {
@@ -388,26 +442,6 @@ p.descricao-tarefa {
   }
 }
 
-@media (min-width: 300px) {
-  .tarefas-pendentes {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    list-style: none;
-    margin: 1.5rem 0;
-  }
-}
-
-@media (min-width: 300px) {
-  .tarefas-terminadas {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    list-style: none;
-    margin: 1.5rem 0;
-  }
-}
-
 @media (min-width: 576px) {
   .nova-tarefa {
     width: 100%;
@@ -415,41 +449,6 @@ p.descricao-tarefa {
   }
 }
 
-@media (min-width: 576px) {
-  .tarefas-pendentes {
-    width: 90%;
-    margin: 1.5rem 5%;
-  }
-}
-
-@media (min-width: 576px) {
-  .tarefas-terminadas {
-    width: 90%;
-    margin: 1.5rem 5%;
-  }
-}
-
-@media (max-width: 576px) {
-  .tarefa .descricao {
-    display: block;
-  }
-}
-
-@media (max-width: 576px) {
-  .tarefa .timestamp {
-    display: flex !important;
-    flex-direction: row;
-    justify-content: center;
-    column-gap: .2rem;
-    margin-top: 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .titulo-terminadas {
-    width: 100%;
-  }
-}
 /* End: Estilização de tarefas pendentes e concluídas */
 
 /* Estilização: Modo Escuro automático */

@@ -67,59 +67,18 @@
         <div id="main-area" class="container pt-4">
             <form class="d-flex flex-column nova-tarefa">
                 <div class="d-flex flex-row col-12">
-                    <div class="input-group">
-						<input class="form-control" type="text" id="nova-tarefa" placeholder="Nova tarefa" maxlength="140" minlength="1">
-						<span class="d-none d-sm-flex input-group-text contador" id="character-count">140</span>
-					</div>
-					<button class="btn btn-tarefas" id="adicionar-tarefa" type="button">
-						<i class="fas fa-plus" data-bs-toggle="tooltip" data-bss-tooltip=""></i>
-					</button>
+                    <div class="input-group"><input class="form-control" type="text" id="nova-tarefa" placeholder="Nova tarefa" maxlength="140" minlength="1"><span class="d-none d-sm-flex input-group-text contador" id="character-count">140</span></div><button class="btn btn-tarefas" id="adicionar-tarefa" type="button"><i class="fas fa-plus" data-bs-toggle="tooltip" data-bss-tooltip=""></i></button>
                 </div>
                 <div><span id="adicionar-tarefa-mensagem"></span></div>
             </form>
             <div id="skeletond">
                 <ul id="tarefas-pendentes" class="tarefas-pendentes">
-                    <li class="tarefa">
-                        <div class="not-done" onclick="editarTarefa()">
-							<i class="fas fa-check"></i>
-						</div>
-                        <div class="descricao gap-3">
-                            <div hidden="true">
-                                <p class="text-muted">ID</p>
-                            </div>
-                            <p class="descricao-tarefa">Este é um card de exemplo da lista de tarefas pendentes. Ele será removido ao final do projeto, dando lugar para as tarefas buscadas pela API.</p>
-                            <div class="timestamp">
-                                <p class="text-center mb-0">Criada em:</p>
-                                <p class="text-center mb-0">15/07/21</p>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
             </div>
             <div class="d-flex flex-column align-items-center">
                 <h2 class="titulo-terminadas">Tarefas terminadas</h2>
-                <div id="skeletond">
+                <div class="d-flex justify-content-center col-12" id="skeletond">
                     <ul id="tarefas-terminadas" class="tarefas-terminadas">
-                        <li class="tarefa">
-                            <div class="descricao gap-3">
-                                <div hidden="true">
-                                    <p class="text-muted">ID</p>
-                                </div>
-                                <p class="descricao-tarefa">Este é um card de exemplo da lista de tarefas concluídas. Ele será removido ao final do projeto, dando lugar para as tarefas buscadas pela API.<br></p>
-                                <div class="timestamp">
-                                    <p class="text-center mb-0">Criada em:</p>
-                                    <p class="text-center mb-0">15/07/21</p>
-                                </div>
-                                <div class="text-center d-md-flex mt-3 mt-md-0">
-									<button class="btn btn-tarefas mx-1" type="button" onclick="editarTarefa();">
-										<i class="fas fa-undo-alt"></i>
-									</button>
-									<button class="btn btn-tarefas mx-1" type="button" onclick="excluirTarefa()">
-										<i class="fas fa-trash"></i>
-									</button>
-								</div>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
