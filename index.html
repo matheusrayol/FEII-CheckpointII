@@ -6,31 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>App To-Do | Login</title>
-
-    <!-- SEO / Opengraph -->
+    <!-- SEO / Opengraph / Twitter Share -->
     <meta name="theme-color" content="#19204d ">
-    <meta name="description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="assets/img/todoapp_opengraph.png">
-	
-	<!-- Twitter Share -->
+    <meta property="og:title" content="App To-Do: Organize suas tarefas">
+    <meta name="twitter:image" content="assets/img/todoapp_opengraph.png">
+    <meta property="og:image" content="assets/img/todoapp_opengraph.png">
+    <meta property="og:type" content="website">
+    <meta name="description"
+        content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
     <meta name="twitter:title" content="App To-Do: Organize suas tarefas">
-	<meta name="twitter:image" content="assets/img/todoapp_opengraph.png">
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:description" content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description"
+        content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
+    <meta property="og:description"
+        content="Com o To-Do você nunca esquecerá suas tarefas, por mais pequenas que sejam! Cadastre rapidamente suas tarefas diárias e controle o que fazer pelo smartphone, tablet ou computador. Experimente agora!">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="512x512" href="assets/img/todoapp_favicon.png">
 
-    <!-- Folha de estilos: Bootstrap 5.1 -->
+    <!-- Folha de Estilos: Bootstrap 5.1 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
 
-    <!-- Fontes personalizadas: Ubuntu / Poppins -->
+    <!-- Fontes personalizadas -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu&amp;display=swap">
 
-    <!-- Ícones FontAwesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <!-- FontAwesome 5.12 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
 
     <!-- Folha de estilos do App To-Do -->
     <link rel="stylesheet" href="assets/styles/apptodo.css">
@@ -46,7 +48,7 @@
                     <div class="card border-0">
                         <div class="card-body p-0">
                             <div class="row g-0">
-							
+
                                 <!-- Start: Coluna Formluário de Login -->
                                 <div class="col-lg-6">
                                     <div class="p-5">
@@ -55,28 +57,39 @@
                                         </div>
                                         <div>
                                             <h6 class="h5 mb-0">Boas-vindas de volta!</h6>
-                                            <p class="mt-1 mb-3">Insira seu endereço de e-mail e senha para acessar a sua lista de tarefas.</p>
+                                            <p class="mt-1 mb-3">Insira seu endereço de e-mail e senha para acessar a
+                                                sua lista de tarefas.</p>
                                         </div>
                                         <form id="formulario-login">
                                             <div class="mb-2"><label class="form-label mb-0">E-mail:</label>
-                                                <div class="input-group"><input class="form-control" type="text" id="email-input"></div><small id="email-input-message" class="text-danger"></small>
+                                                <div class="input-group"><input class="form-control" type="text"
+                                                        id="email-input"></div><small id="email-input-message"
+                                                    class="text-danger"></small>
                                             </div>
                                             <div class="mb-2"><label class="form-label mb-0">Senha:</label>
-                                                <div class="input-group"><input class="form-control" type="password" id="password-input"></div><small id="password-input-message" class="text-danger"></small>
+                                                <div class="input-group"><input class="form-control" type="password"
+                                                        id="password-input"></div><small id="password-input-message"
+                                                    class="text-danger"></small>
                                             </div>
-                                            <div class="form-check mb-4"><input class="form-check-input" type="checkbox" id="manter-login"><label class="form-check-label" id="manter-login-label" for="formCheck-1">Mantenha-me conectado</label></div>
-                                            <div class="justify-content-between align-items-center d-flex flex-row"><button id="submit-button" class="btn-apptodo" type="submit">Fazer Login</button><a href="signup.html">Cadastre-se</a></div><small id="login-status-message" class="text-danger mt-2"></small>
+                                            <div class="form-check mb-4"><input class="form-check-input" type="checkbox"
+                                                    id="manter-login"><label class="form-check-label"
+                                                    id="manter-login-label" for="formCheck-1">Mantenha-me
+                                                    conectado</label></div>
+                                            <div class="justify-content-between align-items-center d-flex flex-row">
+                                                <button id="submit-button" class="btn-apptodo" type="submit">Fazer
+                                                    Login</button><a href="signup.html">Cadastre-se</a></div><small
+                                                id="login-status-message" class="text-danger mt-2"></small>
                                         </form>
                                     </div>
                                 </div>
-								<!-- End: Coluna Formulário de Login -->
-								
+                                <!-- End: Coluna Formulário de Login -->
+
                                 <!-- Start: Coluna Imagem de destaque -->
                                 <div class="col-lg-6 d-none d-lg-inline-block">
                                     <div class="splash-block login"></div>
                                 </div>
-								<!-- End: Coluna Formulário de Login -->
-								
+                                <!-- End: Coluna Formulário de Login -->
+
                             </div>
                         </div>
                     </div>
@@ -84,20 +97,23 @@
             </div>
         </div>
     </section>
-	<!-- End: Seção principal: Área de Login -->
-    <button class="btn btn-tarefas modal-github" type="button" data-bs-target="#container-modal" data-bs-toggle="modal"><i class="fab fa-github"></i></button>
+    <!-- End: Seção principal: Área de Login -->
+    <button class="btn btn-tarefas modal-github" type="button" data-bs-target="#container-modal"
+        data-bs-toggle="modal"><i class="fab fa-github"></i></button>
     <!-- Sart: Seção do Modal de participantes -->
     <div id="container-modal" class="modal fade" role="dialog" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-md-down" role="document">
             <div class="modal-content participantes">
                 <div class="modal-header border-0">
-                    <h4 class="modal-title text-theme">Participantes</h4><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h4 class="modal-title text-theme">Participantes</h4><button class="btn-close" type="button"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3 text-center d-flex flex-column justify-content-between p-5 p-md-0">
-                                <img class="rounded-circle img-fluid align-self-center" src="assets/img/fabioneres.png" width="70%" />
+                                <img class="rounded-circle img-fluid align-self-center" src="assets/img/fabioneres.png"
+                                    width="70%" />
                                 <h6 class="text-center text-theme mt-2">Fábio Neres</h6>
                                 <div class="row">
                                     <div class="col d-flex justify-content-center">
@@ -111,7 +127,8 @@
                                 </div>
                             </div>
                             <div class="col-md-3 text-center d-flex flex-column justify-content-between p-5 p-md-0">
-                                <img class="rounded-circle img-fluid align-self-center" src="assets/img/henriquesantos.jpg" width="70%" />
+                                <img class="rounded-circle img-fluid align-self-center"
+                                    src="assets/img/henriquesantos.jpg" width="70%" />
                                 <h6 class="text-center text-theme mt-2">Henrique Santos</h6>
                                 <div class="row">
                                     <div class="col d-flex justify-content-center">
@@ -125,7 +142,8 @@
                                 </div>
                             </div>
                             <div class="col-md-3 text-center d-flex flex-column justify-content-between p-5 p-md-0">
-                                <img class="rounded-circle img-fluid align-self-center" src="assets/img/matheusrayol.jpg" width="70%" />
+                                <img class="rounded-circle img-fluid align-self-center"
+                                    src="assets/img/matheusrayol.jpg" width="70%" />
                                 <h6 class="text-center text-theme mt-2">Matheus Rayol</h6>
                                 <div class="row">
                                     <div class="col d-flex justify-content-center">
@@ -139,7 +157,8 @@
                                 </div>
                             </div>
                             <div class="col-md-3 text-center d-flex flex-column justify-content-between p-5 p-md-0">
-                                <img class="rounded-circle img-fluid align-self-center" src="assets/img/pedromarques.jpg" width="70%" />
+                                <img class="rounded-circle img-fluid align-self-center"
+                                    src="assets/img/pedromarques.jpg" width="70%" />
                                 <h6 class="text-center text-theme mt-2">Pedro Marques</h6>
                                 <div class="row">
                                     <div class="col d-flex justify-content-center">
