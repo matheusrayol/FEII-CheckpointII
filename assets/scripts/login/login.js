@@ -33,18 +33,18 @@ campoEmail.addEventListener('input', () => {
     // Verifica se o campo de e-mail está com um e-mail em formato válido. Caso esteja, altera a borda do elemento para verde e remove qualquer mensagem de erro existente.
     if (validarCampo(campoEmail)) {
         campoEmail.style.border = "3px solid #5369f8";
-        limpaMensagemDeErro(campoEmailMensagem);
+        limpaMensagem(campoEmailMensagem);
         emailEValido = true;
     }
     else if (campoEmail.value == "") {
         campoEmail.style.border = "3px solid #ced4da"
-        limpaMensagemDeErro(campoEmailMensagem);
+        limpaMensagem(campoEmailMensagem);
         emailEValido = false;
     }
     // Caso ainda não esteja com o formato válido, altera a borda do elemento para vermelho e a mensagem de erro é exibida assim que o texto começar a ser introduzido no campo.    
     else {
         campoEmail.style.border = "3px solid red";
-        constroiMensagemDeErro("Formato de E-mail inválido.", campoEmailMensagem);
+        constroiMensagem("erro", "Formato de E-mail inválido.", campoEmailMensagem);
         emailEValido = false;
     }
 });
@@ -55,18 +55,18 @@ campoSenha.addEventListener('input', () => {
     // Verifica se o campo de senha não está vazio, e que ele possui o mínimo de 8 caracteres. Caso possua, remove qualquer mensagem de erro e altera a borda do elemento para verde.
     if (validarCampo(campoSenha)) {
         campoSenha.style.border = "3px solid #5369f8";
-        limpaMensagemDeErro(campoSenhaMensagem);
+        limpaMensagem(campoSenhaMensagem);
         senhaEValida = true;
     }
     else if (campoSenha.value == "") {
         campoSenha.style.border = "3px solid #ced4da";
-        limpaMensagemDeErro(campoSenhaMensagem);
+        limpaMensagem(campoSenhaMensagem);
         senhaEvalida = false;
     } 
     // Caso o campo de senha ainda não tenha o mínimo de 8 caracteres, a mensagem de erro é exibida assim que o texto começar a ser introduzido no campo.
     else {
         campoSenha.style.border = "3px solid red";
-        constroiMensagemDeErro("A senha deve possuir no mínimo 8 caracteres.", campoSenhaMensagem);
+        constroiMensagem("erro", "A senha deve possuir no mínimo 8 caracteres.", campoSenhaMensagem);
         senhaEValida = false;
     }
 });
@@ -77,8 +77,7 @@ botaoLogin.addEventListener('click', evento => {
     // Verifica se o usuário preencheu os campos de e-mail e senha. 
     // Caso não tenha preenchido, impede o envio do formulário e exibe mensagem de erro.
     if (validarLogin()) {
-        limpaMensagemDeErro(statusLoginMensagem);
-        console.log("Todos os campos para login foram preenchidos.");
+        limpaMensagem(statusLoginMensagem);
         evento.preventDefault();
 
         // Exibe o spinner durante o processo de login
@@ -142,7 +141,7 @@ botaoLogin.addEventListener('click', evento => {
     } else {
         evento.preventDefault();
         // Interrompe o spinner
-        constroiMensagemDeErro("Preencha todos os campos corretamente.", statusLoginMensagem);
+        constroiMensagem("erro", "Preencha todos os campos corretamente.", statusLoginMensagem);
     }
 });
 
@@ -160,7 +159,7 @@ function sucessoNoLogin(tokenRecebido) {
     // Exibe no console a resposta recebida da API de login
     console.log(`JSON Recebido: ${tokenRecebido}`);
     // Altera a mensagem de erro para informar que o login foi bem-sucedido
-    constroiMensagemInformativa("Redirecionando...", statusLoginMensagem);
+    constroiMensagem("sucesso", "Redirecionando...", statusLoginMensagem);
 
     // Verifica se o usuário selecionou a opção de manter login
     if (checkboxManterLogin.checked) {
@@ -187,13 +186,11 @@ function erroNoLogin(statusRecebido) {
 
     // Altera a mensagem de erro para informar que o login não foi bem-sucedido
     if (statusRecebido == 400 || statusRecebido == 404) {
-        console.log("Falha no login. Verifique o e-mail e senha informados.");
-        constroiMensagemDeErro("Falha no login. Verifique o e-mail e senha informados.", statusLoginMensagem);
+        constroiMensagem("erro", "Falha no login. Verifique o e-mail e senha informados.", statusLoginMensagem);
     } else if (statusRecebido == 500) {
-        console.log("Ocorreu um erro no servidor. Tente novamente mais tarde.");
-        constroiMensagemDeErro("Ocorreu um erro no servidor. Tente novamente mais tarde.", statusLoginMensagem);
+        constroiMensagem("erro", "Ocorreu um erro no servidor. Tente novamente mais tarde.", statusLoginMensagem);
     } else {
-        limpaMensagemDeErro(statusLoginMensagem)
+        limpaMensagem(statusLoginMensagem)
     }
     validarLogin();
 }

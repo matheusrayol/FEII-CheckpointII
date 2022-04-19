@@ -1,0 +1,1 @@
+// Arquivo para construção das requisições da API

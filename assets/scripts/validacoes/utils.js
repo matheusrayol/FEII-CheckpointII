@@ -1,44 +1,3 @@
-// Captura de campos - Campos comuns entre páginas
-const campoEmail = document.getElementById('email-input');
-const campoEmailMensagem = document.getElementById('email-input-message');
-const campoSenha = document.getElementById('password-input');
-const campoSenhaMensagem = document.getElementById('password-input-message');
-
-// Captura de campos - Página de login
-const checkboxManterLogin = document.getElementById('manter-login');
-const botaoLogin = document.getElementById('submit-button');
-const statusLoginMensagem = document.getElementById('login-status-message');
-const areaLogin = document.getElementById('login-screen');
-
-// Captura de campos - Página de cadastro
-const campoNome = document.getElementById('name-input');
-const campoNomeMensagem = document.getElementById('name-input-message');
-const campoSobrenome = document.getElementById('surname-input');
-const campoSobrenomeMensagem = document.getElementById('surname-input-message');
-const campoConfirmaSenha = document.getElementById('password-confirm-input');
-const campoConfirmaSenhaMensagem = document.getElementById('password-confirm-input-message');
-const botaoCadastro = document.getElementById('submit-button');
-const statusCadastroMensagem = document.getElementById('signup-status-message');
-const formularioCadastro = document.querySelector('form');
-
-// Captura de campos - Página de tarefas
-const areaConectada = document.getElementById('area-logada');
-const areaBloqueada = document.getElementById('area-alerta');
-const campoUsername = document.getElementById('user-name');
-const botaoSair = document.getElementById('encerrar-sessao');
-const contarCaracteres = document.getElementById('character-count');
-const campoNovaTarefa = document.getElementById('nova-tarefa');
-const campoNovaTarefaMensagem = document.getElementById('nova-tarefa-message');
-const botaoNovaTarefa = document.getElementById('adicionar-tarefa');
-const tarefasPendentes = document.getElementById('tarefas-pendentes');
-const tarefasConcluidas = document.getElementById('tarefas-terminadas');
-const skeletonDiv = document.querySelectorAll('#skeleton');
-
-// Variáveis - Localização dos tokens
-let tokenJwt = sessionStorage.getItem('jwt');
-let localTokenJwt = localStorage.getItem('jwt');
-
-
 // Função para validação do local do token
 const tokenAtual = () => {
     if (localTokenJwt) {
@@ -60,30 +19,26 @@ function converteValorRecebidoEmMinusculo (recebeValor) {
     return recebeValor.toLowerCase();
 }
 
-// Função para construção das mensagens de erro
-function constroiMensagemDeErro(mensagemDeErro, campoDeExibicao) {
+// Função para construção das mensagens informativas
+function constroiMensagem(tipoMensagem, mensagemDeErro, campoDeExibicao) {
     campoDeExibicao.innerText = mensagemDeErro;
     campoDeExibicao.style.fontSize = "8";
     campoDeExibicao.style.fontWeight = "bold";
-    campoDeExibicao.style.color = "red";
-    campoDeExibicao.style.marginTop = "5px";
-}
-
-// Função para construção de mensagens informativas
-function constroiMensagemInformativa(mensagemInformativa, campoDeExibicao) {
-    campoDeExibicao.innerText = mensagemInformativa;
-    campoDeExibicao.style.fontSize = "8";
-    campoDeExibicao.style.fontWeight = "bold";
-    campoDeExibicao.style.color = "grey";
-    campoDeExibicao.style.marginTop = "5px";
+	campoDeExibicao.style.marginTop = '5px';
+	if (tipoMensagem == 'erro') {
+		campoDeExibicao.style.color = 'red';
+	}
+	else {
+		campoDeExibicao.style.color = 'var(--cor-texto)';
+	}
 }
 
 // Função para limpar mensagem de erro
-function limpaMensagemDeErro(campoDeExibicao) {
+function limpaMensagem(campoDeExibicao) {
     campoDeExibicao.innerText = "";
 }
 
-// Função unificada para a validação dos campos de cadastro e/ou login
+// Função unificada para a validação dos campos de cadastro, login e nova tarefa
 function validarCampo(campo) {
 	if (campo == campoNome) {
 		const nameHasOnlyString = !/\d/g.test(campoNome.value);

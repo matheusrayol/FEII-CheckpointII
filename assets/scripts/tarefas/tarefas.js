@@ -165,15 +165,15 @@ campoNovaTarefa.addEventListener('input', () => {
 
     if (validarCampo(campoNovaTarefa)) {
         campoNovaTarefa.style.border = "3px solid #5369f8";
-        limpaMensagemDeErro(campoNovaTarefaMensagem);
+        limpaMensagem(campoNovaTarefaMensagem);
     }
     else if (campoNovaTarefa.value == "") {
         campoNovaTarefa.style.border = "3px solid #ced4da";
-        limpaMensagemDeErro(campoNovaTarefaMensagem);
+        limpaMensagem(campoNovaTarefaMensagem);
     }
     else {
         campoNovaTarefa.style.border = "3px solid red";
-        constroiMensagemDeErro("A nova tarefa deve conter no mínimo 2 caracteres.", campoNovaTarefaMensagem);
+        constroiMensagem("erro", "A nova tarefa deve conter no mínimo 2 caracteres.", campoNovaTarefaMensagem);
     }
 })
 
