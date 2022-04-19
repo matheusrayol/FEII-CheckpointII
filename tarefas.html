@@ -67,17 +67,23 @@
         <div id="main-area" class="container pt-4">
             <form class="d-flex flex-column nova-tarefa">
                 <div class="d-flex flex-row col-12">
-                    <div class="input-group"><input class="form-control" type="text" id="nova-tarefa" placeholder="Nova tarefa" maxlength="140" minlength="1"><span class="d-none d-sm-flex input-group-text contador" id="character-count">140</span></div><button class="btn btn-tarefas" id="adicionar-tarefa" type="button"><i class="fas fa-plus" data-bs-toggle="tooltip" data-bss-tooltip=""></i></button>
+                    <div class="input-group">
+						<input class="form-control" type="text" id="nova-tarefa" placeholder="Nova tarefa" maxlength="140" minlength="1">
+						<span class="d-none d-sm-flex input-group-text contador" id="character-count">140</span>
+					</div>
+					<button class="btn btn-tarefas" id="adicionar-tarefa" type="submit">
+						<i class="fas fa-plus" data-bs-toggle="tooltip" data-bss-tooltip=""></i>
+					</button>
                 </div>
                 <div><span id="adicionar-tarefa-mensagem"></span></div>
             </form>
-            <div id="skeletond">
+            <div id="skeleton">
                 <ul id="tarefas-pendentes" class="tarefas-pendentes">
                 </ul>
             </div>
             <div class="d-flex flex-column align-items-center">
                 <h2 class="titulo-terminadas">Tarefas terminadas</h2>
-                <div class="d-flex justify-content-center col-12" id="skeletond">
+                <div id="skeleton" class="d-flex justify-content-center col-12">
                     <ul id="tarefas-terminadas" class="tarefas-terminadas">
                     </ul>
                 </div>
