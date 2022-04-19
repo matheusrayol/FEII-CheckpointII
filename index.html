@@ -83,24 +83,83 @@
                 </div>
             </div>
         </div>
-        <img src="./assets/img/iconmonstr-github-1-240.png" class="modal-github" alt="Github dos participantes">
     </section>
 	<!-- End: Seção principal: Área de Login -->
-
-    <section id="container-modal">
-        <div id="modal-div">
-            <h1>Participantes</h1>
-            <div id="modal-participantes">
-                <img src="assets/img/matheusrayol.jpg" id="matheus-img">
-                <img src="assets/img/henriquesantos.jpg" id="henrique-img">
-                <img src="assets/img/fabioneres.png" id="fabio-img">
-                <img src="assets/img/pedromarques.jpg" id="pedro-img">
+    <button class="btn btn-tarefas modal-github" type="button" data-bs-target="#container-modal" data-bs-toggle="modal"><i class="fab fa-github"></i></button>
+    <!-- Sart: Seção do Modal de participantes -->
+    <div id="container-modal" class="modal fade" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-md-down" role="document">
+            <div class="modal-content participantes">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title text-theme">Participantes</h4><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 text-center d-flex flex-column justify-content-between p-5 p-md-0">
+                                <img class="rounded-circle img-fluid align-self-center" src="assets/img/fabioneres.png" width="70%" />
+                                <h6 class="text-center text-theme mt-2">Fábio Neres</h6>
+                                <div class="row">
+                                    <div class="col d-flex justify-content-center">
+                                        <button id="github-fabio" class="btn btn-modal mx-1" type="button">
+                                            <i class="fab fa-github"></i>
+                                        </button>
+                                        <button id="linkedin-fabio" class="btn btn-modal mx-1" type="button">
+                                            <i class="fab fa-linkedin"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center d-flex flex-column justify-content-between p-5 p-md-0">
+                                <img class="rounded-circle img-fluid align-self-center" src="assets/img/henriquesantos.jpg" width="70%" />
+                                <h6 class="text-center text-theme mt-2">Henrique Santos</h6>
+                                <div class="row">
+                                    <div class="col d-flex justify-content-center">
+                                        <button id="github-henrique" class="btn btn-modal mx-1" type="button">
+                                            <i class="fab fa-github"></i>
+                                        </button>
+                                        <button id="linkedin-henrique" class="btn btn-modal mx-1" type="button">
+                                            <i class="fab fa-linkedin"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center d-flex flex-column justify-content-between p-5 p-md-0">
+                                <img class="rounded-circle img-fluid align-self-center" src="assets/img/matheusrayol.jpg" width="70%" />
+                                <h6 class="text-center text-theme mt-2">Matheus Rayol</h6>
+                                <div class="row">
+                                    <div class="col d-flex justify-content-center">
+                                        <button id="github-matheus" class="btn btn-modal mx-1" type="button">
+                                            <i class="fab fa-github"></i>
+                                        </button>
+                                        <button id="linkedin-matheus" class="btn btn-modal mx-1" type="button">
+                                            <i class="fab fa-linkedin"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center d-flex flex-column justify-content-between p-5 p-md-0">
+                                <img class="rounded-circle img-fluid align-self-center" src="assets/img/pedromarques.jpg" width="70%" />
+                                <h6 class="text-center text-theme mt-2">Pedro Marques</h6>
+                                <div class="row">
+                                    <div class="col d-flex justify-content-center">
+                                        <button id="github-pedro" class="btn btn-modal mx-1" type="button">
+                                            <i class="fab fa-github"></i>
+                                        </button>
+                                        <button id="linkedin-pedro" class="btn btn-modal mx-1" type="button">
+                                            <i class="fab fa-linkedin"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0"></div>
             </div>
-            <div id="container-botao">
-                <button id="close-modal">Close me</button>
-            </div>      
         </div>
-    </section>
+    </div>
+    <!-- End: Seção do Modal de participantes -->
 
     <!-- Script do Bootstrap 5.1 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
