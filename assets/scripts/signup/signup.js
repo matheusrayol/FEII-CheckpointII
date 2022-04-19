@@ -86,6 +86,8 @@ botaoCadastro.addEventListener('click', (event) => {
 	event.preventDefault();
   // Verifica se todos os campos foram preenchidos corretamente.
 	if (validarCadastro()) {
+
+		mostrarSpinner();
     	// REFATORAÇÃO: Exibe em console o resultado das validações. 
 		// Acho que podemos remover as instâncias de console.log de todos os códigos quando terminarmos o desenvolvimento.
 		console.log('validateName: ' + validarCampo(campoNome));
@@ -159,6 +161,7 @@ function erroNoCadastro(statusRecebido) {
 	// Exibe no console o status da resposta da API de login
 	console.log(`Status recebido: ${statusRecebido}`);
 
+	ocultarSpinner();
 	// Altera a mensagem de erro para informar que o login não foi bem-sucedido
 	if (statusRecebido == 400) {
 		console.log("Este usuário já está registrado, ou os dados informados estão incompletos.");

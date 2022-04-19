@@ -81,6 +81,9 @@ botaoLogin.addEventListener('click', evento => {
         console.log("Todos os campos para login foram preenchidos.");
         evento.preventDefault();
 
+        // Exibe o spinner durante o processo de login
+        mostrarSpinner();
+
         // Normaliza os campos retirando espaços em branco
         campoEmailLoginNormalizado = retiraEspacosDeUmValorInformado(campoEmail.value);
         campoSenhaLoginNormalizado = retiraEspacosDeUmValorInformado(campoSenha.value);
@@ -138,6 +141,7 @@ botaoLogin.addEventListener('click', evento => {
             )
     } else {
         evento.preventDefault();
+        // Interrompe o spinner
         constroiMensagemDeErro("Preencha todos os campos corretamente.", statusLoginMensagem);
     }
 });
@@ -177,6 +181,7 @@ function erroNoLogin(statusRecebido) {
     campoSenha.value = "";
     campoSenha.style.border = "3px solid #ced4da";
 
+    ocultarSpinner();
     // Exibe no console o status da resposta da API de login
     console.log(`Status recebido: ${statusRecebido}`);
 

@@ -22,6 +22,7 @@
   --cor-background: #CBD2FD !important;
   --cor-borda-input: #ccc !important;
   --cor-texto-input: #333 !important;
+  --cor-sweetalert-border: #CBD2FD !important;
 }
 
 /* Regras globais */
@@ -463,6 +464,7 @@ p.descricao-tarefa {
     --cor-texto-input: lightgrey !important;
     --cor-background: #010525 !important;
     --cor-borda-input: #2c2e41 !important;
+    --cor-sweetalert-border: #5369f8 !important;
   }
 }
 
@@ -502,3 +504,65 @@ p.descricao-tarefa {
 .btn-modal:focus {
   box-shadow: none;
 }
+
+/* Spinner / animação */
+
+/* Oculta o formulário */
+.hidden {
+  display: none;
+ }
+  
+ /* Estilos do Spinner */
+ #container-load {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  -webkit-transition: all 3s ease;
+  transition: all 3s ease;
+ }
+  
+ #load {
+  border: 10px solid var(--cor-destaque);
+  outline: 0;
+  border-top-color: var(--cor-destaque);
+  border-bottom-color: var(--cor-background);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  -webkit-animation: girar 1.5s linear infinite;
+  animation: girar 1.5s linear infinite;
+ }
+  
+ /* Animação do spinner */
+ @-webkit-keyframes girar {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+ }
+  
+ @keyframes girar {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+ }
+
+ .swal2-modal {
+   border: 5px solid var(--cor-sweetalert-border);
+   border-radius: .5rem;
+ }

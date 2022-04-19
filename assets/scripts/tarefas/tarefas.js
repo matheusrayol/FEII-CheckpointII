@@ -77,7 +77,7 @@ function exibeNome() {
             // Recebe o objeto JSON da API de login
             resultado => {
                 // Chama a função sucessoNoLogin para continuar a requisição e armazenar o token no localStorage.
-                campoUsername.innerText = 'Bem vindo, ' + resultado.firstName;
+                campoUsername.innerText = 'Olá, ' + resultado.firstName + '!';
             }
         )
         .catch(
@@ -109,6 +109,10 @@ function listarTarefas() {
     )
         .then(
             resultado => {
+                if (resultado.length == 0) {
+                    document.getElementById("tarefas-pendentes").innerHTML = `<div class="shadow-sm p-4 mb-4 text-center"><h1>Não há tarefas</h1></div>`;
+                    document.querySelector(".titulo-terminadas").setAttribute("hidden", true);
+                  }       
                 resultado.forEach(tarefa => {
                     dataFormatada = dayjs(tarefa.createdAt).format('DD/MM/YYYY HH:mm');
                     if (!tarefa.completed) {
@@ -309,37 +313,55 @@ function restaurarTarefa(tarefaId) {
 
 // Função para excluir uma tarefa concluída
 function removerTarefa(tarefaId) {
-    let urlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/tasks/" + tarefaId;
 
-    let headerToken = new Headers();
-    headerToken.append("Authorization", tokenAtual());
+    Swal.fire({
+        title: 'Excluir tarefa?',
+        text: "Esta ação não pode ser desfeita!",
+        icon: 'warning',
+        background: 'var(--cor-fundo)',
+        color: 'var(--cor-texto)',
+        showCancelButton: true,
+        confirmButtonColor: 'var(--cor-destaque)',
+        cancelButtonColor: 'var(--bs-danger)',
+        confirmButtonText: 'Sim, excluir',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            let urlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/tasks/" + tarefaId;
 
-    const configuracaoRequisicao = {
-        method: 'DELETE',
-        headers: {
-            'Authorization': tokenAtual(),
-        }
-    };
+            let headerToken = new Headers();
+            headerToken.append("Authorization", tokenAtual());
+        
+            const configuracaoRequisicao = {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': tokenAtual(),
+                }
+            };
+        
+            fetch(urlEndpoint, configuracaoRequisicao).then(
+                resultado => {
+                    if (resultado.status == 200) {
+                        return resultado.json();
+                    }
+                    throw resultado;
+                }
+            )
+                .then(
+                    resultado => {
+                        console.log(resultado);
+                        window.location.reload();
+                    }
+                )
+                .catch(
+                    erro => {
+                        console.log(erro);
+                    }
+                );
+            }
+      })
 
-    fetch(urlEndpoint, configuracaoRequisicao).then(
-        resultado => {
-            if (resultado.status == 200) {
-                return resultado.json();
-            }
-            throw resultado;
-        }
-    )
-        .then(
-            resultado => {
-                console.log(resultado);
-                window.location.reload();
-            }
-        )
-        .catch(
-            erro => {
-                console.log(erro);
-            }
-        );
+    
 
 }
 
