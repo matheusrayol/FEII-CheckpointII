@@ -110,7 +110,7 @@ function listarTarefas() {
         .then(
             resultado => {
                 if (resultado.length == 0) {
-                    document.getElementById("tarefas-pendentes").innerHTML = `<div class="shadow-sm p-4 mb-4 text-center"><h1>Não há tarefas</h1></div>`;
+                    document.getElementById("tarefas-pendentes").innerHTML = `<div class="p-4 mb-4 text-center"><h1>Não há tarefas</h1></div>`;
                     document.querySelector(".titulo-terminadas").setAttribute("hidden", true);
                   }       
                 resultado.forEach(tarefa => {
