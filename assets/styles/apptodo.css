@@ -468,6 +468,7 @@ p.descricao-tarefa {
   }
 }
 
+/* Estilização do modal de participantes */
 .modal-github {
   position: fixed;
   bottom: 40px;
@@ -505,14 +506,12 @@ p.descricao-tarefa {
   box-shadow: none;
 }
 
-/* Spinner / animação */
+/* Estilização da animação Spinner */
 
-/* Oculta o formulário */
 .hidden {
   display: none;
  }
   
- /* Estilos do Spinner */
  #container-load {
   width: 100%;
   height: 100%;
@@ -539,7 +538,6 @@ p.descricao-tarefa {
   animation: girar 1.5s linear infinite;
  }
   
- /* Animação do spinner */
  @-webkit-keyframes girar {
   from {
     -webkit-transform: rotate(0deg);
@@ -562,6 +560,7 @@ p.descricao-tarefa {
   }
  }
 
+ /* Estilização do alerta do Sweet Alert 2 */
  .swal2-modal {
    border: 5px solid var(--cor-sweetalert-border);
    border-radius: .5rem;

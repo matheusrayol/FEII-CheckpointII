@@ -21,6 +21,19 @@ const botaoCadastro = document.getElementById('submit-button');
 const statusCadastroMensagem = document.getElementById('signup-status-message');
 const formularioCadastro = document.querySelector('form');
 
+// Captura de campos - Página de tarefas
+const areaConectada = document.getElementById('area-logada');
+const areaBloqueada = document.getElementById('area-alerta');
+const campoUsername = document.getElementById('user-name');
+const botaoSair = document.getElementById('encerrar-sessao');
+const contarCaracteres = document.getElementById('character-count');
+const campoNovaTarefa = document.getElementById('nova-tarefa');
+const campoNovaTarefaMensagem = document.getElementById('nova-tarefa-message');
+const botaoNovaTarefa = document.getElementById('adicionar-tarefa');
+const tarefasPendentes = document.getElementById('tarefas-pendentes');
+const tarefasConcluidas = document.getElementById('tarefas-terminadas');
+const skeletonDiv = document.querySelectorAll('#skeleton');
+
 // Variáveis - Localização dos tokens
 let tokenJwt = sessionStorage.getItem('jwt');
 let localTokenJwt = localStorage.getItem('jwt');
@@ -103,5 +116,9 @@ function validarCampo(campo) {
 		const isBothPasswordsEqual = campoSenha.value === campoConfirmaSenha.value;
 		return isBothPasswordsEqual;
 	}
-
+	else if (campo == campoNovaTarefa) {
+		const minLength = 2;
+		const isTarefaValid = campoNovaTarefa.value.length >= minLength;
+		return isTarefaValid;
+	}
 }

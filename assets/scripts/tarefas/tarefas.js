@@ -1,15 +1,3 @@
-// Captura dos elementos
-let areaConectada = document.getElementById('area-logada');
-let areaBloqueada = document.getElementById('area-alerta');
-let campoUsername = document.getElementById('user-name');
-let botaoSair = document.getElementById('encerrar-sessao');
-let contarCaracteres = document.getElementById('character-count');
-let campoNovaTarefa = document.getElementById('nova-tarefa');
-let botaoNovaTarefa = document.getElementById('adicionar-tarefa');
-let tarefasPendentes = document.getElementById('tarefas-pendentes');
-let tarefasConcluidas = document.getElementById('tarefas-terminadas');
-let skeletonDiv = document.querySelectorAll('#skeleton');
-
 onload = function () {
     // Verifica se o token está presente no localStorage
     if (tokenAtual()) {
@@ -172,10 +160,27 @@ function listarTarefas() {
         );
 }
 
+// Event Listener para o campo de nova tarefa
+campoNovaTarefa.addEventListener('input', () => {
+
+    if (validarCampo(campoNovaTarefa)) {
+        campoNovaTarefa.style.border = "3px solid #5369f8";
+        limpaMensagemDeErro(campoNovaTarefaMensagem);
+    }
+    else if (campoNovaTarefa.value == "") {
+        campoNovaTarefa.style.border = "3px solid #ced4da";
+        limpaMensagemDeErro(campoNovaTarefaMensagem);
+    }
+    else {
+        campoNovaTarefa.style.border = "3px solid red";
+        constroiMensagemDeErro("A nova tarefa deve conter no mínimo 2 caracteres.", campoNovaTarefaMensagem);
+    }
+})
+
 // Event Listener para cadastrar nova tarefa na área logada
 botaoNovaTarefa.addEventListener('click', (evento) => {
     evento.preventDefault();
-    if (campoNovaTarefa.value != "") {
+    if (validarCampo(campoNovaTarefa)) {
         const urlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/tasks";
 
         const objetoTarefa = {
@@ -216,6 +221,8 @@ botaoNovaTarefa.addEventListener('click', (evento) => {
                     console.log(erro);
                 }
             );
+    } else {
+        evento.preventDefault();
     }
 })
 
