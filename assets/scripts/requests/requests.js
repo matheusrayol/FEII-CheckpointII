@@ -256,10 +256,10 @@ function trataRespostaRequisicao(statusRecebido, respostaApi, tipoRequisicao) {
                                         </div>
                                         <div class="col d-flex justify-content-evenly align-items-center">
                                             <button class="btn btn-tarefas" type="button" onclick="efetuaRequisicao('updateTask', ${tarefa.id}, 'restaurar')">
-                                                <i class="fas fa-undo" data-bs-toggle="tooltip"></i>
+                                                <i class="fas fa-undo"></i>
                                             </button>
                                             <button class="btn btn-tarefas" type="button" onclick="removerTarefa(${tarefa.id})">
-                                                <i class="fas fa-trash" data-bs-toggle="tooltip"></i>
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                         </div>
                                     </div>
