@@ -1,11 +1,3 @@
-// Criação do objeto que receberá as informações de cadastro para envio
-const cadastroUsuarioObjeto = {
-	firstName: '',
-	lastName: '',
-	email: '',
-	password: ''
-}
-
 // Event Listener - Campo de Nome
 campoNome.addEventListener('input', () => { 
   // Verifica se o campo Nome foi preenchido corretamente.
@@ -87,89 +79,17 @@ botaoCadastro.addEventListener('click', (event) => {
   // Verifica se todos os campos foram preenchidos corretamente.
 	if (validarCadastro()) {
 
+		// Exibe o spinner
 		mostrarSpinner();
-    	// REFATORAÇÃO: Exibe em console o resultado das validações. 
-		// Acho que podemos remover as instâncias de console.log de todos os códigos quando terminarmos o desenvolvimento.
-		console.log('validateName: ' + validarCampo(campoNome));
-		console.log('validateSurname: ' + validarCampo(campoSobrenome));
-		console.log('validateEmail: ' + validarCampo(campoEmail));
-		console.log('validatePassword: ' + validarCampo(campoSenha));
-		console.log('validatePasswordConfirmation: ' + validarCampo(campoConfirmaSenha));
 
-		// Atribui os valores dos campos de cadastro ao objeto de cadastro.
-		cadastroUsuarioObjeto.firstName = campoNome.value;
-		cadastroUsuarioObjeto.lastName = campoSobrenome.value;
-		cadastroUsuarioObjeto.email = campoEmail.value;
-		cadastroUsuarioObjeto.password = campoSenha.value;
-
-		// Converte o objeto em uma string JSON
-		const cadastroUsuarioObjetoEmString = JSON.stringify(cadastroUsuarioObjeto);
-
-		// Prepara o envio do objeto JSON para a API de cadastro
-		const signupUrlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/users";
-		const configuracaoDaRequisicao = {
-			method: 'POST',
-			body: cadastroUsuarioObjetoEmString,
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		}
-
-		// Envia a requisição para a API de cadastro
-		fetch(signupUrlEndpoint, configuracaoDaRequisicao).then(
-			// Recebe a resposta da API de cadstro
-			resultado => {
-				// Verifica o status da resposta
-				// Se o status for 201, o cadastro foi efetuado com sucesso
-				if (resultado.status == 201) {
-					return resultado.json();
-				}
-				throw resultado;
-
-			}
-		).then(
-			// Recebe o objeto JSON da API de cadastro
-			resultado => { 
-        // Chama a função sucessoNoCadastro para continuar a requisição
-				sucessoNoCadastro(resultado.jwt);
-			}
-		).catch(erro => {
-			// Caso o cadastro não tenha sido bem-sucedido, informa o erro no console
-			// e exibe a mensagem abaixo do formulário de cadastro.
-			erroNoCadastro(erro.status);
-		})
-
+		// Chama a função que constroi a requisição para o cadastro
+        efetuaRequisicao('signup');
 
 	} else {
 		event.preventDefault();
 		constroiMensagem("erro", "Todos os campos do cadastro são obrigatórios. Verifique mensagens de erro e corrija os campos necessários.", statusCadastroMensagem);
 	}
 });
-
-// Função de retorno em caso de sucesso no login
-function sucessoNoCadastro(tokenRecebido) {
-	// Altera a mensagem de erro para informar que o login foi bem-sucedido
-	constroiMensagem("sucesso", "Cadastro concluído! Redirecionando...", statusCadastroMensagem);
-
-	setTimeout(() => {location.href = "index.html";}, 1500);	
-}
-
-// Função de retorno em caso de erro no login
-function erroNoCadastro(statusRecebido) {
-	// Exibe no console o status da resposta da API de login
-	console.log(`Status recebido: ${statusRecebido}`);
-
-	ocultarSpinner();
-	// Altera a mensagem de erro para informar que o login não foi bem-sucedido
-	if (statusRecebido == 400) {
-		constroiMensage("erro", "Este usuário já está registrado, ou os dados informados estão incompletos.", statusCadastroMensagem);
-	} else if (statusRecebido == 500) {
-    constroiMensagem("erro", "Ocorreu um erro no servidor. Tente novamente mais tarde.", statusCadastroMensagem);
-  } else {
-		limpaMensagem(statusCadastroMensagem)
-	}
-	validarCadastro();
-}
 
 // Validação dos campos de cadastro
 const validarCadastro = () => {

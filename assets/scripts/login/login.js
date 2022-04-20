@@ -83,61 +83,9 @@ botaoLogin.addEventListener('click', evento => {
         // Exibe o spinner durante o processo de login
         mostrarSpinner();
 
-        // Normaliza os campos retirando espaços em branco
-        campoEmailLoginNormalizado = retiraEspacosDeUmValorInformado(campoEmail.value);
-        campoSenhaLoginNormalizado = retiraEspacosDeUmValorInformado(campoSenha.value);
+        // Chama a função que constroi a requisição para o login
+        efetuaRequisicao('login');
 
-        // Normaliza os caracteres do e-mail para minúsculas
-        campoEmailLoginNormalizado = converteValorRecebidoEmMinusculo(campoEmailLoginNormalizado);
-
-        // Exibe os dados informados durante o login
-        console.log(`E-mail informado: ${campoEmailLoginNormalizado}`);
-        console.log(`Senha informada: ${campoSenhaLoginNormalizado}`);
-
-        // Adiciona o e-mail e senha ao objeto da página
-        usuarioObjeto.email = campoEmailLoginNormalizado;
-        usuarioObjeto.password = campoSenhaLoginNormalizado;
-
-        // Converte o objeto em string JSON
-        const usuarioObjetoEmString = JSON.stringify(usuarioObjeto);
-
-        // Prepara o envio do objeto JSON para a API de login
-        // REFATORAÇÃO: Ficaria melhor se criássemos uma função para a geração das calls de API de acordo com o tipo de requisição presente na documentação (GET, POST, PUT, DELETE)
-        const loginUrlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/users/login";
-        const configuracaoDaRequisicao = {
-            method: 'POST',
-            body: usuarioObjetoEmString,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-
-        // Envia a requisição para a API de login
-        fetch(loginUrlEndpoint, configuracaoDaRequisicao).then(
-            // Recebe a resposta da API de login
-            resultado => {
-                // Verifica o status da resposta
-                // Se o status for 201, o login foi validado com sucesso
-                if (resultado.status == 201) {
-                    return resultado.json();
-                }
-                throw resultado;
-            }
-        )
-            .then(
-                // Recebe o objeto JSON da API de login
-                resultado => {
-                    // Chama a função sucessoNoLogin para continuar a requisição e armazenar o token no localStorage.
-                    sucessoNoLogin(resultado.jwt);
-                }
-            )
-            .catch(
-                erro => {
-                    // Caso o login não tenha sido bem-sucedido, informa a mensagem no console
-                    // e exibe a mensagem de erro abaixo do formulário de login.
-                    erroNoLogin(erro.status);
-                }
-            )
     } else {
         evento.preventDefault();
         // Interrompe o spinner
@@ -152,45 +100,4 @@ function validarLogin() {
     } else {
         return false
     }
-}
-
-// Função de retorno em caso de sucesso no login
-function sucessoNoLogin(tokenRecebido) {
-    // Exibe no console a resposta recebida da API de login
-    console.log(`JSON Recebido: ${tokenRecebido}`);
-    // Altera a mensagem de erro para informar que o login foi bem-sucedido
-    constroiMensagem("sucesso", "Redirecionando...", statusLoginMensagem);
-
-    // Verifica se o usuário selecionou a opção de manter login
-    if (checkboxManterLogin.checked) {
-        // Armazena o token no localStorage
-        localStorage.setItem("jwt", tokenRecebido);
-    } else {
-        // Armazena o token no sessionStorage
-        sessionStorage.setItem("jwt", tokenRecebido);
-    }
-    
-    // Rediciona para a página de tarefas
-    location.href = "tarefas.html";
-}
-
-// Função de retorno em caso de erro no login
-function erroNoLogin(statusRecebido) {
-    // Limpa o campo da senha
-    campoSenha.value = "";
-    campoSenha.style.border = "3px solid #ced4da";
-
-    ocultarSpinner();
-    // Exibe no console o status da resposta da API de login
-    console.log(`Status recebido: ${statusRecebido}`);
-
-    // Altera a mensagem de erro para informar que o login não foi bem-sucedido
-    if (statusRecebido == 400 || statusRecebido == 404) {
-        constroiMensagem("erro", "Falha no login. Verifique o e-mail e senha informados.", statusLoginMensagem);
-    } else if (statusRecebido == 500) {
-        constroiMensagem("erro", "Ocorreu um erro no servidor. Tente novamente mais tarde.", statusLoginMensagem);
-    } else {
-        limpaMensagem(statusLoginMensagem)
-    }
-    validarLogin();
 }

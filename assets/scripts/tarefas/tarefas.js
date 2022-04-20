@@ -2,13 +2,13 @@ onload = function () {
     // Verifica se o token está presente no localStorage
     if (tokenAtual()) {
         // Captura o nome do usuário para exibição na página
-        exibeNome();
+        efetuaRequisicao('getMe');
 
         // Remove a seção que bloqueia a página em caso do usuário não estar logado
         areaBloqueada.remove();
 
         // Lista as tarefas do usuário na interface
-        listarTarefas();
+        efetuaRequisicao('getTasks');
 
         // Exibe a seção que contém a lista de tarefas do usuário
         areaConectada.removeAttribute('hidden');
@@ -36,130 +36,6 @@ botaoSair.addEventListener('click', function () {
     location.href = 'index.html';
 });
 
-// função para exibição de nome do usuário logado
-function exibeNome() {
-    const urlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/users/getMe";
-
-    let headerToken = new Headers();
-    headerToken.append('Authorization', tokenAtual())
-
-    const configuracaoDaRequisicao = {
-        method: 'GET',
-        headers: headerToken,
-        redirect: 'follow'
-    }
-
-    // Envia a requisição para a API de login
-    fetch(urlEndpoint, configuracaoDaRequisicao).then(
-        // Recebe a resposta da API de login
-        resultado => {
-            // Verifica o status da resposta
-            // Se o status for 201, o login foi validado com sucesso
-            if (resultado.status == 200) {
-                return resultado.json();
-            }
-            throw resultado;
-        }
-    )
-        .then(
-            // Recebe o objeto JSON da API de login
-            resultado => {
-                // Chama a função sucessoNoLogin para continuar a requisição e armazenar o token no localStorage.
-                campoUsername.innerText = 'Olá, ' + resultado.firstName + '!';
-            }
-        )
-        .catch(
-            erro => {
-                // Caso o login não tenha sido bem-sucedido, informa a mensagem no console
-                // e exibe a mensagem de erro abaixo do formulário de login.
-                console.log(erro);
-            }
-        );
-}
-
-// Função para listar as tarefas do usuário na área logada
-function listarTarefas() {
-    const urlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/tasks";
-    const configuracaoRequisicao = {
-        method: 'GET',
-        headers: {
-            'Authorization': tokenAtual()
-        }
-    }
-
-    fetch(urlEndpoint, configuracaoRequisicao).then(
-        resultado => {
-            if (resultado.status == 200) {
-                return resultado.json();
-            }
-            throw resultado;
-        }
-    )
-        .then(
-            resultado => {
-                if (resultado.length == 0) {
-                    document.getElementById("tarefas-pendentes").innerHTML = `<div class="p-4 mb-4 text-center"><h1>Não há tarefas</h1></div>`;
-                    document.querySelector(".titulo-terminadas").setAttribute("hidden", true);
-                  }       
-                resultado.forEach(tarefa => {
-                    dataFormatada = dayjs(tarefa.createdAt).format('DD/MM/YYYY HH:mm');
-                    if (!tarefa.completed) {
-                        tarefasPendentes.innerHTML += `<li class="tarefa" id="${tarefa.id}">
-                    <div class="not-done" onclick="concluirTarefa(${tarefa.id})">
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <div class="descricao gap-3">
-                        <p class="nome" id="descricao-${tarefa.id}" onclick="editarTarefa(${tarefa.id})"><span>${tarefa.description}</span></p>
-                        <div class="timestamp">
-                            <p class="text-center mb-0">Criada em:</p>
-                            <p class="text-center mb-0">${dataFormatada}</p>
-                        </div>
-                    </div>
-                </li>`;
-                    }
-                    else {
-                        tarefasConcluidas.innerHTML += `<li class="tarefa" id="${tarefa.id}">
-                        <div class="descricao">
-                            <div class="container p-0">
-                                <div class="row g-0">
-                                    <div class="col-12 col-lg-8 col-xl-9 d-flex align-items-center">
-                                        <p class="m-2 m-sm-1 m-xl-0">${tarefa.description}</p>
-                                    </div>
-                                    <div class="col-12 col-lg-4 col-xl-3">
-                                        <div class="row g-0 row-cols-1 row-cols-lg-2">
-                                            <div class="col d-flex align-items-center p-1">
-                                                <p class="m-2 m-sm-1 m-xl-0">Criada em: ${dataFormatada}</p>
-                                            </div>
-                                            <div class="col d-flex justify-content-evenly align-items-center">
-                                                <button class="btn btn-tarefas" type="button" onclick="restaurarTarefa(${tarefa.id})">
-                                                    <i class="fas fa-undo" data-bs-toggle="tooltip"></i>
-                                                </button>
-                                                <button class="btn btn-tarefas" type="button" onclick="removerTarefa(${tarefa.id})">
-                                                    <i class="fas fa-trash" data-bs-toggle="tooltip"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>`;
-                    }
-                })
-                setTimeout(function () {
-                    skeletonDiv.forEach(element => {
-                        element.removeAttribute('id');
-                    });
-                }, 300);
-            }
-        )
-        .catch(
-            erro => {
-                console.log(erro);
-            }
-        );
-}
-
 // Event Listener para o campo de nova tarefa
 campoNovaTarefa.addEventListener('input', () => {
 
@@ -181,142 +57,11 @@ campoNovaTarefa.addEventListener('input', () => {
 botaoNovaTarefa.addEventListener('click', (evento) => {
     evento.preventDefault();
     if (validarCampo(campoNovaTarefa)) {
-        const urlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/tasks";
-
-        const objetoTarefa = {
-            'description': '',
-            'completed': ''
-        }
-
-        objetoTarefa.description = campoNovaTarefa.value;
-        objetoTarefa.completed = false;
-
-        const objetoTarefaEmJson = JSON.stringify(objetoTarefa);
-
-        const configuracaoRequisicao = {
-            method: 'POST',
-            headers: {
-                'Authorization': tokenAtual(),
-                'Content-Type': 'application/json'
-            },
-            body: objetoTarefaEmJson
-        };
-
-        fetch(urlEndpoint, configuracaoRequisicao).then(
-            resultado => {
-                if (resultado.status == 201) {
-                    return resultado.json();
-                }
-                throw resultado;
-            }
-        )
-            .then(
-                resultado => {
-                    console.log(resultado);
-                    window.location.reload();
-                }
-            )
-            .catch(
-                erro => {
-                    console.log(erro);
-                }
-            );
+        efetuaRequisicao('createTask');
     } else {
         evento.preventDefault();
     }
 })
-
-// Função para concluir uma tarefa
-function concluirTarefa(tarefaId) {
-    let urlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/tasks/" + tarefaId;
-
-    let headerToken = new Headers();
-    headerToken.append("Authorization", tokenAtual());
-
-    const objetoTarefa = {
-        'completed': ''
-    }
-
-    objetoTarefa.completed = true;
-
-    const objetoTarefaEmJson = JSON.stringify(objetoTarefa);
-
-    const configuracaoRequisicao = {
-        method: 'PUT',
-        headers: {
-            'Authorization': tokenAtual(),
-            'Content-Type': 'application/json'
-        },
-        body: objetoTarefaEmJson
-    };
-
-    fetch(urlEndpoint, configuracaoRequisicao).then(
-        resultado => {
-            if (resultado.status == 200) {
-                return resultado.json();
-            }
-            throw resultado;
-        }
-    )
-        .then(
-            resultado => {
-                console.log(resultado);
-                window.location.reload();
-            }
-        )
-        .catch(
-            erro => {
-                console.log(erro);
-            }
-        );
-
-}
-
-// Função para restaurar uma tarefa concluída
-function restaurarTarefa(tarefaId) {
-    let urlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/tasks/" + tarefaId;
-
-    let headerToken = new Headers();
-    headerToken.append("Authorization", tokenAtual());
-
-    const objetoTarefa = {
-        'completed': ''
-    }
-
-    objetoTarefa.completed = false;
-
-    const objetoTarefaEmJson = JSON.stringify(objetoTarefa);
-
-    const configuracaoRequisicao = {
-        method: 'PUT',
-        headers: {
-            'Authorization': tokenAtual(),
-            'Content-Type': 'application/json'
-        },
-        body: objetoTarefaEmJson
-    };
-
-    fetch(urlEndpoint, configuracaoRequisicao).then(
-        resultado => {
-            if (resultado.status == 200) {
-                return resultado.json();
-            }
-            throw resultado;
-        }
-    )
-        .then(
-            resultado => {
-                console.log(resultado);
-                window.location.reload();
-            }
-        )
-        .catch(
-            erro => {
-                console.log(erro);
-            }
-        );
-
-}
 
 // Função para excluir uma tarefa concluída
 function removerTarefa(tarefaId) {
@@ -334,42 +79,10 @@ function removerTarefa(tarefaId) {
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
-            let urlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/tasks/" + tarefaId;
-
-            let headerToken = new Headers();
-            headerToken.append("Authorization", tokenAtual());
-        
-            const configuracaoRequisicao = {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': tokenAtual(),
-                }
-            };
-        
-            fetch(urlEndpoint, configuracaoRequisicao).then(
-                resultado => {
-                    if (resultado.status == 200) {
-                        return resultado.json();
-                    }
-                    throw resultado;
-                }
-            )
-                .then(
-                    resultado => {
-                        console.log(resultado);
-                        window.location.reload();
-                    }
-                )
-                .catch(
-                    erro => {
-                        console.log(erro);
-                    }
-                );
+            efetuaRequisicao('deleteTask', tarefaId);
             }
       })
-
-    
-
+      
 }
 
 // Função para editar uma tarefa pendente

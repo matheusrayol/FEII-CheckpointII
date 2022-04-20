@@ -31,6 +31,7 @@ const campoNovaTarefa = document.getElementById('nova-tarefa');
 const campoNovaTarefaMensagem = document.getElementById('nova-tarefa-message');
 const botaoNovaTarefa = document.getElementById('adicionar-tarefa');
 const tarefasPendentes = document.getElementById('tarefas-pendentes');
+const tituloTarefasConcluidas = document.querySelector('.titulo-terminadas');
 const tarefasConcluidas = document.getElementById('tarefas-terminadas');
 const skeletonDiv = document.querySelectorAll('#skeleton');
 
