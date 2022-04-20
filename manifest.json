@@ -1,0 +1,20 @@
+{
+    "short_name": "To-Do",
+    "name": "App To-Do: Organize suas tarefas",
+    "icons": [
+        {
+            "src": "/assets/img/todoapp_favicon.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "/assets/img/todoapp_logo.png",
+            "type": "image/png",
+            "sizes": "420x420"
+        }
+    ],
+    "start_url": "https://matheusrayol.github.io/FEII-CheckpointII",
+    "background_color": "var(--cor-background)",
+    "theme_color": "var(--cor-background)",
+    "display": "fullscreen"
+}
