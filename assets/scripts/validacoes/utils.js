@@ -19,6 +19,15 @@ function converteValorRecebidoEmMinusculo (recebeValor) {
     return recebeValor.toLowerCase();
 }
 
+// Função para construção das mensagens informativas utilizando o Sweet Alert
+function constroiMensagemSwal(tipoMensagem, mensagem) {
+	Swal.fire({
+		icon: tipoMensagem,
+		title: 'Ops...',
+		text: mensagem
+	})
+}
+
 // Função para construção das mensagens informativas
 function constroiMensagem(tipoMensagem, mensagemDeErro, campoDeExibicao) {
     campoDeExibicao.innerText = mensagemDeErro;

@@ -22,7 +22,7 @@
   --cor-background: #CBD2FD !important;
   --cor-borda-input: #ccc !important;
   --cor-texto-input: #333 !important;
-  --cor-sweetalert-border: #CBD2FD !important;
+  --cor-sweetalert-border: #a7b3ff !important;
 }
 
 /* Regras globais */
@@ -562,6 +562,10 @@ p.descricao-tarefa {
 
  /* Estilização do alerta do Sweet Alert 2 */
  .swal2-modal {
-   border: 5px solid var(--cor-sweetalert-border);
-   border-radius: .5rem;
+   border: 5px solid var(--cor-sweetalert-border) !important;
+   border-radius: .5rem !important;
+ }
+
+ .swal2-container.swal2-backdrop-show, .swal2-container.swal2-noanimation {
+  background: var(--cor-background) !important;
  }

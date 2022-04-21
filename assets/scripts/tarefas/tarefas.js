@@ -31,9 +31,23 @@ campoNovaTarefa.onkeyup = function () {
 
 // Listener para o botão de logout
 botaoSair.addEventListener('click', function () {
-    sessionStorage.removeItem('jwt');
-    localStorage.removeItem('jwt');
-    location.href = 'index.html';
+    Swal.fire({
+        text: "Deseja encerrar a sessão agora?",
+        icon: 'question',
+        background: 'var(--cor-fundo)',
+        color: 'var(--cor-texto)',
+        showCancelButton: true,
+        confirmButtonColor: 'var(--cor-destaque)',
+        cancelButtonColor: 'var(--bs-danger)',
+        confirmButtonText: 'Encerrar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            sessionStorage.removeItem('jwt');
+            localStorage.removeItem('jwt');
+            location.href = 'index.html';
+        }
+    })
 });
 
 // Event Listener para o campo de nova tarefa
@@ -69,20 +83,20 @@ function removerTarefa(tarefaId) {
     Swal.fire({
         title: 'Excluir tarefa?',
         text: "Esta ação não pode ser desfeita!",
-        icon: 'warning',
+        icon: 'question',
         background: 'var(--cor-fundo)',
         color: 'var(--cor-texto)',
         showCancelButton: true,
         confirmButtonColor: 'var(--cor-destaque)',
         cancelButtonColor: 'var(--bs-danger)',
-        confirmButtonText: 'Sim, excluir',
+        confirmButtonText: 'Excluir',
         cancelButtonText: 'Cancelar'
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             efetuaRequisicao('deleteTask', tarefaId);
-            }
-      })
-      
+        }
+    })
+
 }
 
 // Função para editar uma tarefa pendente

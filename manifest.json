@@ -14,7 +14,7 @@
         }
     ],
     "start_url": "https://matheusrayol.github.io/FEII-CheckpointII",
-    "background_color": "var(--cor-background)",
-    "theme_color": "var(--cor-background)",
+    "background_color": "#CBD2FD",
+    "theme_color": "#CBD2FD",
     "display": "fullscreen"
 }

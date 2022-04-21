@@ -107,7 +107,7 @@ function efetuaRequisicao(tipoRequisicao, idTarefa, statusTarefa) {
             body: JSON.stringify(taskObject)
         }
     }
-    
+
     // Se a requisição for de atualizar uma tarefa,
     // constrói a estrutura para realizar a requisição
     else if (tipoRequisicao == 'updateTask') {
@@ -207,7 +207,27 @@ function trataRespostaRequisicao(statusRecebido, respostaApi, tipoRequisicao) {
         else if (tipoRequisicao == 'signup') {
             // Constroi mensagem informando do sucesso no cadastro
             // caso o spinner falhe em ser executado
-            constroiMensagem("sucesso", "Cadastro concluído! Redirecionando...", statusCadastroMensagem);
+            let timerInterval
+            Swal.fire({
+                icon: 'success',
+                html: 'Cadastro concluído!<br/> Redirecionando para o login...',
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            })
 
             // Redireciona o usuário para a área de login
             setTimeout(() => { location.href = './index.html'; }, 1500);
@@ -229,11 +249,11 @@ function trataRespostaRequisicao(statusRecebido, respostaApi, tipoRequisicao) {
                 dataFormatada = dayjs(tarefa.createdAt).format('DD/MM/YYYY HH:mm');
                 if (!tarefa.completed) {
                     tarefasPendentes.innerHTML += `<li class="tarefa" id="${tarefa.id}">
-                <div class="not-done" onclick="efetuaRequisicao('updateTask', ${tarefa.id}, 'concluir')">
+                <div class="not-done" onclick="efetuaRequisicao('updateTask', ${tarefa.id}, 'concluir')" data-toggle="tooltip" data-placement="top" title="Concluir tarefa">
                     <i class="fas fa-check"></i>
                 </div>
                 <div class="descricao gap-3">
-                    <p class="nome" id="descricao-${tarefa.id}" onclick="editarTarefa(${tarefa.id})"><span>${tarefa.description}</span></p>
+                    <p class="nome" id="descricao-${tarefa.id}" onclick="editarTarefa(${tarefa.id})" data-toggle="tooltip" data-placement="top" title="Clique duas vezes na tarefa para editá-la"><span>${tarefa.description}</span></p>
                     <div class="timestamp">
                         <p class="text-center mb-0">Criada em:</p>
                         <p class="text-center mb-0">${dataFormatada}</p>
@@ -255,10 +275,10 @@ function trataRespostaRequisicao(statusRecebido, respostaApi, tipoRequisicao) {
                                             <p class="m-2 m-sm-1 m-xl-0">Criada em: ${dataFormatada}</p>
                                         </div>
                                         <div class="col d-flex justify-content-evenly align-items-center">
-                                            <button class="btn btn-tarefas" type="button" onclick="efetuaRequisicao('updateTask', ${tarefa.id}, 'restaurar')">
+                                            <button class="btn btn-tarefas" type="button" onclick="efetuaRequisicao('updateTask', ${tarefa.id}, 'restaurar')" data-toggle="tooltip" data-placement="top" title="Restaurar tarefa">
                                                 <i class="fas fa-undo"></i>
                                             </button>
-                                            <button class="btn btn-tarefas" type="button" onclick="removerTarefa(${tarefa.id})">
+                                            <button class="btn btn-tarefas" type="button" onclick="removerTarefa(${tarefa.id})" data-toggle="tooltip" data-placement="top" title="Excluir tarefa">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </div>
@@ -269,6 +289,9 @@ function trataRespostaRequisicao(statusRecebido, respostaApi, tipoRequisicao) {
                     </div>
                 </li>`;
                 }
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                  })
             })
             setTimeout(function () {
                 skeletonDiv.forEach(element => {
@@ -292,31 +315,32 @@ function trataRespostaRequisicao(statusRecebido, respostaApi, tipoRequisicao) {
 
             // Exibe a mensagem de erro
             if (respostaApi == 400 || respostaApi == 404) {
-                constroiMensagem("erro", "Falha no login. Verifique o e-mail e senha informados.", statusLoginMensagem);
+                constroiMensagemSwal("error", "Falha no login. Verifique o e-mail e senha informados.");
             } else if (respostaApi == 500) {
-                constroiMensagem("erro", "Ocorreu um erro no servidor. Tente novamente mais tarde", statusLoginMensagem);
+                constroiMensagemSwal("error", "Ocorreu um erro no servidor. Tente novamente mais tarde");
             } else {
-                constroiMensagem("erro", "Ocorreu um erro desconhecido. Tente novamente mais tarde", statusLoginMensagem);
+                constroiMensagemSwal("error", "Ocorreu um erro desconhecido. Tente novamente mais tarde");
             }
 
             // Oculta o spinner
             ocultarSpinner();
 
+            // Valida os campos do formulário
             validarLogin();
         }
         // Tratamento de requisição de cadastro
         else if (tipoRequisicao == 'signup') {
-            // Oculta o spinner
-            ocultarSpinner();
-
             // Exibe a mensagem de erro
             if (respostaApi == 400) {
-                constroiMensagem("erro", "Este usuário já encontra-se registrado, ou os dados informados estão incorretos.", statusCadastroMensagem);
+                constroiMensagemSwal("error", "Este usuário já encontra-se registrado, ou os dados informados estão incorretos.");
             } else if (respostaApi == 500) {
-                constroiMensagem("erro", "Ocorreu um erro no servidor. Tente novamente mais tarde", statusCadastroMensagem);
+                constroiMensagemSwal("error", "Ocorreu um erro no servidor. Tente novamente mais tarde");
             } else {
-                constroiMensagem("erro", "Ocorreu um erro desconhecido. Tente novamente mais tarde", statusCadastroMensagem);
+                constroiMensagemSwal("error", "Ocorreu um erro desconhecido. Tente novamente mais tarde");
             }
+            // Oculta o spinner
+            ocultarSpinner();
+            // Valida os campos do formulário
             validarCadastro();
         }
         // Tratamento de requisição de dados do usuário
@@ -339,8 +363,8 @@ function trataRespostaRequisicao(statusRecebido, respostaApi, tipoRequisicao) {
         }
         // Tratamento de requisição de exclusão de tarefa
         else if (tipoRequisicao == 'deleteTask') {
-            console.log(`Falha ao excluir a tarefa (Erro ${respostaApi})`);
+            constroiMensagemSwal('error', `Falha ao excluir a tarefa (Erro ${respostaApi})`);
         }
-    }   
-    
+    }
+
 }
