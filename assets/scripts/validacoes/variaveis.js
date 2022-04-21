@@ -7,6 +7,7 @@ const campoSenhaMensagem = document.getElementById('password-input-message');
 // Captura de campos - Página de login
 const checkboxManterLogin = document.getElementById('manter-login');
 const botaoLogin = document.getElementById('submit-button');
+const statusLoginMensagem = document.getElementById('login-status-message');
 const areaLogin = document.getElementById('login-screen');
 
 // Captura de campos - Página de cadastro
@@ -17,6 +18,7 @@ const campoSobrenomeMensagem = document.getElementById('surname-input-message');
 const campoConfirmaSenha = document.getElementById('password-confirm-input');
 const campoConfirmaSenhaMensagem = document.getElementById('password-confirm-input-message');
 const botaoCadastro = document.getElementById('submit-button');
+const statusCadastroMensagem = document.getElementById('signup-status-message');
 const formularioCadastro = document.querySelector('form');
 
 // Captura de campos - Página de tarefas
