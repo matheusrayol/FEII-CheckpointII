@@ -1,5 +1,5 @@
 // URL principal da API
-const url = 'https://ctd-todo-api.herokuapp.com/v1/';
+const url = 'https://ctd-fe2-todo-v2.herokuapp.com/v1/';
 
 // Funções para construção das requests na API do To-Do App
 

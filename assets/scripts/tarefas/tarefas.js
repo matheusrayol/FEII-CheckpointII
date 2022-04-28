@@ -135,7 +135,7 @@ function editarTarefa(tarefaId) {
                 if (evento.keyCode === 13) {
                     evento.preventDefault();
 
-                    let urlEndpoint = "https://ctd-todo-api.herokuapp.com/v1/tasks/" + tarefaId;
+                    let urlEndpoint = "https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks/" + tarefaId;
 
                     let headerToken = new Headers();
                     headerToken.append("Authorization", tokenAtual());
