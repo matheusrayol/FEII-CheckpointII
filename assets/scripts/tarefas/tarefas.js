@@ -132,7 +132,7 @@ function editarTarefa(tarefaId) {
             input.focus();
             input.addEventListener('keyup', (evento) => {
 
-                if (evento.keyCode === 13) {
+                if (evento.keyCode === 13 && input.value != "") {
                     evento.preventDefault();
 
                     let urlEndpoint = "https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks/" + tarefaId;
@@ -179,17 +179,6 @@ function editarTarefa(tarefaId) {
 
             }
             );
-
-            input.onblur = function () {
-                // Remove o input
-                span.parentNode.removeChild(input);
-
-                // Atualiza o span
-                span.innerHTML = input.value == "" ? "&nbsp;" : input.value;
-
-                // Exibe o span
-                span.style.display = '';
-            }
         }
     });
 }
